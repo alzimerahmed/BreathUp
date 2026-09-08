@@ -36,13 +36,6 @@
 - **Data portability** — local JSON backup and restore.
 - **Theming** — light/dark/system, AMOLED dark, Material You dynamic color, 9 color presets, font presets with variable-font tuning, dynamic app icons.
 
-## Screenshots
-
-<p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="32%" alt="Home dashboard"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="32%" alt="Analytics charts"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="32%" alt="Trigger statistics">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" width="32%" alt="Settings"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" width="32%" alt="Tapering plan"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" width="32%" alt="Achievements">
-</p>
-
 ## Tech Stack
 
 | Layer | Technology |
