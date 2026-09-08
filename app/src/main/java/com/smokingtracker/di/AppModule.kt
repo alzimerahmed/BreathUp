@@ -23,6 +23,7 @@ import org.koin.dsl.module
 
 import com.smokingtracker.data.local.MIGRATION_1_2
 import com.smokingtracker.data.local.MIGRATION_2_3
+import com.smokingtracker.data.local.MIGRATION_3_4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -41,7 +42,7 @@ val appModule = module {
             androidContext(),
             SmokingDatabase::class.java,
             "smoking_tracker.db"
-        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build()
     }
     single { get<SmokingDatabase>().smokingDao() }
     single<SmokingRepository> { SmokingRepositoryImpl(get(), get(), get()) }

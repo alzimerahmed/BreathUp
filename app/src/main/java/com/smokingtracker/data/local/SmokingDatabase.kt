@@ -19,7 +19,13 @@ val MIGRATION_2_3 = object : Migration(2, 3) {
     }
 }
 
-@Database(entities = [SmokingEntryEntity::class], version = 3, exportSchema = true)
+val MIGRATION_3_4 = object : Migration(3, 4) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("CREATE INDEX IF NOT EXISTS index_smoking_entries_timestamp ON smoking_entries(timestamp)")
+    }
+}
+
+@Database(entities = [SmokingEntryEntity::class], version = 4, exportSchema = true)
 abstract class SmokingDatabase : RoomDatabase() {
     abstract fun smokingDao(): SmokingDao
 }

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.devtools.ksp)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -19,7 +21,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        
     }
 
     buildTypes {
@@ -28,7 +29,7 @@ android {
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -40,7 +41,7 @@ android {
         compose = true
         buildConfig = true
     }
-    
+
     androidResources {
         generateLocaleConfig = false
     }
@@ -53,6 +54,20 @@ android {
 
 ksp {
     arg("room.schemaLocation", "$projectDir/schemas")
+}
+
+ktlint {
+    android.set(true)
+    ignoreFailures.set(false)
+    filter {
+        exclude { it.file.path.contains("generated") }
+    }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    baseline = file("$rootDir/config/detekt/baseline.xml")
 }
 
 dependencies {
@@ -90,5 +105,3 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
 }
-
-
