@@ -13,3 +13,6 @@ build.log
 .devin/
 docs/
 .switchboard/
+
+*.apk
+BreathUp Icon.png
