@@ -182,7 +182,6 @@
     <string name="app_version">Version de l\'application : %1$s</string>
     <string name="made_with_love">Fait avec ❤ par Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
-    <string name="link_telegram">Telegram</string>
     <string name="settings_font">Police de l\'interface</string>
     <string name="settings_font_desc">Personnaliser la police et le style de l\'interface</string>
     <string name="font_family_gs_flex">GS Flex</string>
@@ -342,12 +341,6 @@
     <string name="app_icon_organic">Biologique</string>
     <string name="app_icon_midnight">Minuit</string>
     <string name="app_icon_monochrome">Monochrome</string>
-
-    <string name="support_development">Soutenir le développement</string>
-    <string name="support_boosty">Soutenir sur Boosty</string>
-    <string name="crypto_wallets">Portefeuilles crypto (USDT)</string>
-    <string name="address_copied">Adresse copiée dans le presse-papiers !</string>
-    <string name="copy_address">Copier l\'adresse</string>
 
     <string name="mindful_pause_button">Surmonter l’envie</string>
     <string name="mindful_pause_header">Pause consciente</string>

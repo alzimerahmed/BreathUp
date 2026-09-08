@@ -178,7 +178,6 @@
     <string name="app_version">Версія додатка: %1$s</string>
     <string name="made_with_love">Зроблено з ❤ від Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
-    <string name="link_telegram">Telegram</string>
     <string name="settings_font">Шрифт інтерфейсу</string>
     <string name="settings_font_desc">Налаштування шрифту та стилю інтерфейсу</string>
     <string name="font_family_gs_flex">GS Flex</string>
@@ -336,12 +335,6 @@
     <string name="app_icon_organic">Органік</string>
     <string name="app_icon_midnight">Ніч</string>
     <string name="app_icon_monochrome">Монохром</string>
-
-    <string name="support_development">Підтримка розробки</string>
-    <string name="support_boosty">Підтримати на Boosty</string>
-    <string name="crypto_wallets">Криптогаманці (USDT)</string>
-    <string name="address_copied">Адресу скопійовано в буфер обміну!</string>
-    <string name="copy_address">Скопіювати адресу</string>
 
     <string name="mindful_pause_button">Подолати тягу</string>
     <string name="mindful_pause_header">Подолання тяги</string>

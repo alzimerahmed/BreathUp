@@ -175,7 +175,6 @@
     <string name="app_version">Uygulama Sürümü: %1$s</string>
     <string name="made_with_love">Alzimer Ahmed tarafından ❤ ile yapıldı</string>
     <string name="link_github">GitHub</string>
-    <string name="link_telegram">Telegram</string>
     <string name="settings_font">Arayüz Yazı Tipi</string>
     <string name="settings_font_desc">Arayüz yazı tipini ve stilini özelleştirin</string>
     <string name="font_family_gs_flex">GS Flex</string>
@@ -335,12 +334,6 @@
     <string name="app_icon_organic">Organik</string>
     <string name="app_icon_midnight">Gece Yarısı</string>
     <string name="app_icon_monochrome">Tek Renkli</string>
-
-    <string name="support_development">Geliştirmeyi Destekle</string>
-    <string name="support_boosty">Boosty\'de Destekle</string>
-    <string name="crypto_wallets">Kripto Cüzdanları (USDT)</string>
-    <string name="address_copied">Adres panoya kopyalandı!</string>
-    <string name="copy_address">Adresi kopyala</string>
 
     <string name="mindful_pause_button">İsteği Yen</string>
     <string name="mindful_pause_header">Bilinçli Mola</string>

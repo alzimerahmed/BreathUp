@@ -178,7 +178,6 @@
     <string name="app_version">Версия приложения: %1$s</string>
     <string name="made_with_love">Сделано с ❤ от Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
-    <string name="link_telegram">Telegram</string>
     <string name="settings_font">Шрифт интерфейса</string>
     <string name="settings_font_desc">Настройка шрифта и стиля интерфейса</string>
     <string name="font_family_gs_flex">GS Flex</string>
@@ -336,8 +335,6 @@
     <string name="app_icon_midnight">Ночь</string>
     <string name="app_icon_monochrome">Монохром</string>
 
-    <string name="support_development">Поддержка разработки</string>
-
     <string name="mindful_pause_button">Преодолеть тягу</string>
     <string name="mindful_pause_header">Преодоление тяги</string>
     <string name="mindful_pause_or_resist">Или если пытаетесь сдержаться:</string>
@@ -377,11 +374,6 @@
 
     <string name="stats_resisted_cravings">Преодоленные порывы</string>
     <string name="stats_resisted_cravings_desc">Вы устояли %1$d раз и сэкономили %2$s</string>
-
-    <string name="support_boosty">Поддержать на Boosty</string>
-    <string name="crypto_wallets">Криптокошельки (USDT)</string>
-    <string name="address_copied">Адрес скопирован в буфер обмена!</string>
-    <string name="copy_address">Скопировать адрес</string>
 
     <string name="history_generator_title">Прошлый стаж курения</string>
     <string name="history_generator_description">Примерный расчет вашего стажа курения до установки приложения, чтобы узнать общее количество выкуренных сигарет и расходов за прошлые годы.</string>
