@@ -1,0 +1,7 @@
+- Craving toolkit: log intensity and notes with the mindful pause
+- Compassionate relapse support messages
+- Daily mission reminders (toggle in notification settings)
+- Smart insights: see when your triggers strike most
+- Body recovery curve: nicotine and CO levels after your last cigarette
+- Share your progress as a milestone card
+- Quality gates and CI for reliability

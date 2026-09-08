@@ -182,7 +182,7 @@ fun AboutScreen(onBack: () -> Unit) {
                             text = stringResource(R.string.link_github),
                             iconRes = R.drawable.ic_github
                         ) {
-                            uriHandler.openUri("https://github.com/alzimerahmed84/BreathUp")
+                            uriHandler.openUri("https://github.com/alzimerahmed/BreathUp")
                         }
                     }
                 }

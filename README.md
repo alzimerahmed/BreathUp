@@ -8,7 +8,8 @@
 [![Language](https://img.shields.io/badge/Kotlin-2.x-7F52FF?logo=kotlin&logoColor=white&labelColor=1a1a1a&style=flat-square)](https://kotlinlang.org)
 [![UI](https://img.shields.io/badge/Jetpack%20Compose-Material%203-6750A4?logo=jetpackcompose&logoColor=white&labelColor=1a1a1a&style=flat-square)](https://developer.android.com/jetpack/compose)
 [![License](https://img.shields.io/badge/License-GPLv3-blue?logo=gnu&labelColor=1a1a1a&style=flat-square)](LICENSE)
-[![Release](https://img.shields.io/badge/Version-1.6.0-625B71?labelColor=1a1a1a&style=flat-square)](https://github.com/alzimerahmed84/BreathUp/releases)
+[![Release](https://img.shields.io/badge/Version-1.7.0-625B71?labelColor=1a1a1a&style=flat-square)](https://github.com/alzimerahmed/BreathUp/releases)
+[![CI](https://github.com/alzimerahmed/BreathUp/actions/workflows/ci.yml/badge.svg)](https://github.com/alzimerahmed/BreathUp/actions)
 
 *Track every cigarette, resist cravings, and taper down at your own pace — 100% local, no ads, no accounts.*
 
@@ -22,7 +23,11 @@
 
 - **One-tap logging** — log a cigarette instantly; a live timer shows time since the last one.
 - **Home screen widgets** — 1x1 quick-add and 3x1 timer/counter widgets (Glance), with Android 12+ dynamic pinning.
-- **Mindful craving pause** — guided breathing to resist cravings; resisted attempts are tracked and counted.
+- **Mindful craving pause** — guided breathing to resist cravings, with craving-intensity and outcome notes; compassionate support after a slip.
+- **Daily mission reminders** — small daily missions via local notifications (toggle in settings).
+- **Smart insights** — local trigger × time-of-day correlation ("most of your stress cravings happen in the morning").
+- **Body recovery curve** — live nicotine and CO decay after your last cigarette.
+- **Milestone share cards** — export your smoke-free progress as a shareable image.
 - **Tapering reduction plan** — gradual daily-limit reductions with scheduled check-ins, snoozing, and keep-current options.
 - **Historical baseline generator** — compute your past smoking baseline and project money and health savings.
 - **Analytics** — daily/weekly charts, trigger distributions (stress, alcohol, coffee, custom triggers), editable logs.
@@ -46,7 +51,9 @@
 | UI | Jetpack Compose, Material 3 Expressive, Navigation Compose |
 | Widgets | Jetpack Glance |
 | Persistence | Room (schema-exported, KSP), DataStore Preferences, Gson (backups) |
+| Background | WorkManager (daily mission nudges) |
 | DI | Koin |
+| Quality | ktlint, detekt, GitHub Actions CI, 55 unit tests |
 | Platform | minSdk 26, target/compileSdk 37, Java 17 |
 
 ## Project Structure
