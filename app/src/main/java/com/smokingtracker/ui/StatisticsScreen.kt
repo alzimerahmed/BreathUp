@@ -43,8 +43,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.smokingtracker.MainViewModel
 import com.smokingtracker.R
+import com.smokingtracker.ShareCardManager
 import com.smokingtracker.StatisticsData
 import com.smokingtracker.StatisticsManager
+import com.smokingtracker.data.TriggerItem
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -57,6 +59,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun StatisticsScreen(viewModel: MainViewModel, onBack: () -> Unit, onNavigateToSettings: (() -> Unit)? = null) {
     val entries by viewModel.smokingEntries.collectAsStateWithLifecycle()
     val resistedEntries by viewModel.resistedEntries.collectAsStateWithLifecycle()
+    val nonResistedEntities by viewModel.nonResistedEntities.collectAsStateWithLifecycle()
+    val activeTriggers by viewModel.activeTriggers.collectAsStateWithLifecycle()
+    val unlockedAchievements by viewModel.unlockedAchievements.collectAsStateWithLifecycle()
     val dailyLimit by viewModel.dailyLimit.collectAsStateWithLifecycle()
     val packPrice by viewModel.packPrice.collectAsStateWithLifecycle()
     val packSize by viewModel.packSize.collectAsStateWithLifecycle()
@@ -125,6 +130,11 @@ fun StatisticsScreen(viewModel: MainViewModel, onBack: () -> Unit, onNavigateToS
                 packSize = packSize,
                 currency = currency,
                 baselineStats = baselineStats,
+                entitiesWithTriggers = nonResistedEntities.mapNotNull { e ->
+                    e.trigger?.let { t -> t to e.timestamp }
+                },
+                activeTriggers = activeTriggers,
+                unlockedAchievementsCount = unlockedAchievements.size,
                 onNavigateToSettings = onNavigateToSettings
             )
         }
@@ -148,6 +158,9 @@ fun StatisticsList(
     packSize: Int,
     currency: String,
     baselineStats: StatisticsManager.HistoricalBaselineStats? = null,
+    entitiesWithTriggers: List<Pair<String, Long>> = emptyList(),
+    activeTriggers: List<TriggerItem> = emptyList(),
+    unlockedAchievementsCount: Int = 0,
     onNavigateToSettings: (() -> Unit)? = null,
     contentPadding: PaddingValues = PaddingValues(top = 16.dp, bottom = 120.dp)
 ) {
@@ -176,6 +189,10 @@ fun StatisticsList(
             "UAH" -> "₴"
             else -> currency
         }
+    }
+
+    val insight = remember(entitiesWithTriggers) {
+        StatisticsManager().calculateTriggerTimeInsight(entitiesWithTriggers)
     }
 
     val whoMilestones = remember {
@@ -426,6 +443,59 @@ fun StatisticsList(
             }
         }
 
+        // Smart Insight Card
+        if (insight != null) {
+            item {
+                val triggerItem = activeTriggers.find { it.key == insight.triggerKey }
+                val triggerLabel = when {
+                    triggerItem?.labelResId != null -> stringResource(triggerItem.labelResId)
+                    triggerItem?.customName != null -> triggerItem.customName
+                    else -> insight.triggerKey
+                }
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = containerShape(RoundedCornerShape(24.dp)),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.35f)
+                    ),
+                    border = containerBorder(1.dp, MaterialTheme.colorScheme.tertiary.copy(alpha = 0.25f))
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.tertiary,
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Column {
+                            Text(
+                                text = stringResource(R.string.insight_title),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.tertiary
+                            )
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                text = stringResource(
+                                    R.string.insight_text,
+                                    triggerLabel,
+                                    stringResource(insight.peakPeriodResId),
+                                    insight.percent
+                                ),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
         if (dailyLimit > 0 && packPrice > 0f) {
             item {
                 Text(
@@ -577,6 +647,38 @@ fun StatisticsList(
                 icon = Icons.Filled.Info,
                 color = MaterialTheme.colorScheme.secondary
             )
+        }
+
+        if (currentStreakDays > 0) {
+            item {
+                val smokeFreeText = pluralStringResource(R.plurals.stats_days_plural, currentStreakDays, currentStreakDays)
+                Button(
+                    onClick = {
+                        val moneySaved = if (packPrice > 0f) ShareCardManager.formatMoney(streakMoneySaved, currencySymbol) else ""
+                        val bitmap = ShareCardManager.generateCard(
+                            context = context,
+                            smokeFreeText = smokeFreeText,
+                            cigarettesAvoided = streakCigarettesSaved,
+                            moneySaved = moneySaved,
+                            achievementsCount = unlockedAchievementsCount
+                        )
+                        ShareCardManager.shareCard(context, bitmap)
+                    },
+                    modifier = Modifier.fillMaxWidth().height(52.dp),
+                    shape = RoundedCornerShape(18.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.EmojiEvents,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text(
+                        text = stringResource(R.string.share_progress),
+                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold)
+                    )
+                }
+            }
         }
     }
 }

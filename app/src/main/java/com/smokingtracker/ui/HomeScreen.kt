@@ -50,6 +50,9 @@ import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.TrendingDown
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.foundation.Canvas
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.drawscope.Stroke
 import com.smokingtracker.data.TriggerType
 import com.smokingtracker.data.TriggerItem
 import androidx.compose.material3.*
@@ -907,6 +910,20 @@ internal fun HomeScreenContent(
                         onClick = { onNavigateToGraphs("monthly") },
                         modifier = Modifier.weight(1f)
                     )
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                val bodyLevels = remember(entries) {
+                    StatisticsManager().calculateBodyLevels(entries.maxOrNull() ?: 0L)
+                }
+                if (bodyLevels != null) {
+                    HealthRecoveryCard(
+                        nicotinePercent = bodyLevels.nicotinePercent,
+                        coPercent = bodyLevels.coPercent,
+                        hoursSinceLast = bodyLevels.hoursSinceLast
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -1821,6 +1838,119 @@ fun EntryItem(
                             )
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HealthRecoveryCard(
+    nicotinePercent: Int,
+    coPercent: Int,
+    hoursSinceLast: Float
+) {
+    val nicotineColor = MaterialTheme.colorScheme.primary
+    val coColor = MaterialTheme.colorScheme.tertiary
+
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = containerShape(RoundedCornerShape(24.dp)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+        border = containerBorder()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.health_title),
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    text = stringResource(R.string.health_hours_since, hoursSinceLast.toInt()),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                )
+            }
+
+            val markerColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
+            Canvas(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(96.dp)
+            ) {
+                val w = size.width
+                val h = size.height
+                val hoursMax = 72f
+                val steps = 60
+
+                fun levelAt(hours: Float, halfLife: Float): Float =
+                    Math.pow(0.5, (hours / halfLife).toDouble()).toFloat()
+
+                listOf(nicotineColor to 2f, coColor to 5f).forEach { (curveColor, halfLife) ->
+                    val path = androidx.compose.ui.graphics.Path()
+                    for (i in 0..steps) {
+                        val hours = hoursMax * i / steps
+                        val level = levelAt(hours, halfLife)
+                        val x = w * i / steps
+                        val y = h * (1f - level)
+                        if (i == 0) path.moveTo(x, y) else path.lineTo(x, y)
+                    }
+                    drawPath(
+                        path = path,
+                        color = curveColor,
+                        style = Stroke(width = 4.dp.toPx())
+                    )
+                }
+
+                // Current position marker
+                val markerX = w * (hoursSinceLast.coerceIn(0f, hoursMax) / hoursMax)
+                drawLine(
+                    color = markerColor,
+                    start = Offset(markerX, 0f),
+                    end = Offset(markerX, h),
+                    strokeWidth = 2.dp.toPx()
+                )
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .size(10.dp)
+                            .clip(CircleShape)
+                            .background(nicotineColor)
+                    )
+                    Text(
+                        text = stringResource(R.string.health_nicotine, nicotinePercent),
+                        style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Box(
+                        modifier = Modifier
+                            .size(10.dp)
+                            .clip(CircleShape)
+                            .background(coColor)
+                    )
+                    Text(
+                        text = stringResource(R.string.health_co, coPercent),
+                        style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Bold),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             }
         }

@@ -414,5 +414,72 @@ class StatisticsManager {
             peakPeriodPercent = peakPeriodPercent
         )
     }
+
+    data class TriggerTimeInsight(
+        val triggerKey: String,
+        val peakPeriodResId: Int,
+        val percent: Int,
+        val sampleSize: Int
+    )
+
+    fun calculateTriggerTimeInsight(triggerTimestamps: List<Pair<String, Long>>): TriggerTimeInsight? {
+        if (triggerTimestamps.isEmpty()) return null
+
+        val cal = Calendar.getInstance()
+        val byTrigger = triggerTimestamps.groupBy({ it.first }, { it.second })
+
+        var best: TriggerTimeInsight? = null
+        for ((trigger, timestamps) in byTrigger) {
+            if (timestamps.size < 3) continue
+
+            val periods = intArrayOf(0, 0, 0, 0)
+            timestamps.forEach { ts ->
+                cal.timeInMillis = ts
+                when (cal.get(Calendar.HOUR_OF_DAY)) {
+                    in 0..5 -> periods[0]++
+                    in 6..11 -> periods[1]++
+                    in 12..17 -> periods[2]++
+                    else -> periods[3]++
+                }
+            }
+
+            val peakIndex = periods.indices.maxByOrNull { periods[it] } ?: continue
+            val peakCount = periods[peakIndex]
+            val percent = Math.round(peakCount * 100.0 / timestamps.size).toInt()
+            if (percent < 40) continue
+
+            val periodRes = when (peakIndex) {
+                0 -> R.string.peak_period_night
+                1 -> R.string.peak_period_morning
+                2 -> R.string.peak_period_afternoon
+                else -> R.string.peak_period_evening
+            }
+            val candidate = TriggerTimeInsight(trigger, periodRes, percent, timestamps.size)
+            if (best == null || candidate.sampleSize > best.sampleSize) best = candidate
+        }
+        return best
+    }
+
+    data class BodyLevelsData(
+        val nicotinePercent: Int,
+        val coPercent: Int,
+        val hoursSinceLast: Float
+    )
+
+    fun calculateBodyLevels(lastSmokeTime: Long, now: Long = System.currentTimeMillis()): BodyLevelsData? {
+        if (lastSmokeTime <= 0L || now < lastSmokeTime) return null
+
+        val hoursSince = (now - lastSmokeTime) / 3_600_000.0
+        if (hoursSince >= 72.0) return null
+
+        val nicotine = 100.0 * Math.pow(0.5, hoursSince / 2.0)
+        val co = 100.0 * Math.pow(0.5, hoursSince / 5.0)
+
+        return BodyLevelsData(
+            nicotinePercent = Math.round(nicotine).toInt().coerceIn(0, 100),
+            coPercent = Math.round(co).toInt().coerceIn(0, 100),
+            hoursSinceLast = hoursSince.toFloat()
+        )
+    }
 }
 

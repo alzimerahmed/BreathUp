@@ -489,4 +489,16 @@
     <string name="nudge_mission_1">Bugünün görevi: Farkındalık molasıyla bir isteğe direnin</string>
     <string name="nudge_mission_2">Bugünün görevi: Tetikleyici istatistiklerinizi bir dakika inceleyin</string>
     <string name="nudge_mission_3">Bugünün görevi: Son isteğinize bir not ekleyin</string>
+    <string name="insight_title">Akıllı içgörü</string>
+    <string name="insight_text">Çoğu %1$s isteğiniz %2$s gerçekleşiyor (%3$d%%)</string>
+    <string name="health_title">Vücut toparlanması</string>
+    <string name="health_hours_since">Son sigaradan beri %1$d saat</string>
+    <string name="health_nicotine">Nikotin %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">İlerlememi paylaş</string>
+    <string name="share_smoke_free">sigarasız</string>
+    <string name="share_cigarettes_avoided">Önlenen sigara</string>
+    <string name="share_money_saved">Tasarruf edilen para</string>
+    <string name="share_achievements">Başarımlar</string>
+    <string name="share_tagline">Bırakmak her gün daha kolay — BreathUp</string>
 </resources>

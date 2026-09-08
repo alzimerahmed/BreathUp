@@ -490,4 +490,16 @@
     <string name="nudge_mission_1">Миссия на сегодня: Устойте перед одной тягой с помощью осознанной паузы</string>
     <string name="nudge_mission_2">Миссия дня: Просмотрите статистику триггеров за одну минуту</string>
     <string name="nudge_mission_3">Миссия дня: Добавьте заметку к своей последней тяге</string>
+    <string name="insight_title">Умная аналитика</string>
+    <string name="insight_text">Большинство ваших тяг (%1$s) случается %2$s (%3$d%%)</string>
+    <string name="health_title">Восстановление организма</string>
+    <string name="health_hours_since">%1$d ч с последней сигареты</string>
+    <string name="health_nicotine">Никотин %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Поделиться прогрессом</string>
+    <string name="share_smoke_free">без курения</string>
+    <string name="share_cigarettes_avoided">Непрокуренных сигарет</string>
+    <string name="share_money_saved">Сэкономлено денег</string>
+    <string name="share_achievements">Достижения</string>
+    <string name="share_tagline">Бросать становится легче с каждым днем — BreathUp</string>
 </resources>

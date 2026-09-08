@@ -489,4 +489,16 @@
     <string name="nudge_mission_1">Місія дня: Подолайте один потяг за допомогою усвідомленої паузи</string>
     <string name="nudge_mission_2">Сьогоднішня місія: Перегляньте статистику тригерів протягом хвилини</string>
     <string name="nudge_mission_3">Місія дня: Додайте нотатку до свого останнього потягу</string>
+    <string name="insight_title">Розумна аналітика</string>
+    <string name="insight_text">Більшість ваших потягів (%1$s) відбувається %2$s (%3$d%%)</string>
+    <string name="health_title">Відновлення організму</string>
+    <string name="health_hours_since">%1$d год з останньої сигарети</string>
+    <string name="health_nicotine">Нікотин %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Поділитися прогресом</string>
+    <string name="share_smoke_free">без куріння</string>
+    <string name="share_cigarettes_avoided">Невикурених сигарет</string>
+    <string name="share_money_saved">Заощаджені гроші</string>
+    <string name="share_achievements">Досягнення</string>
+    <string name="share_tagline">Кидати стає легше з кожним днем — BreathUp</string>
 </resources>

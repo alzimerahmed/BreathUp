@@ -495,4 +495,16 @@
     <string name="nudge_mission_1">Misión de hoy: Resiste un antojo con una pausa consciente</string>
     <string name="nudge_mission_2">Misión de hoy: Revisa tus estadísticas de disparadores durante un minuto</string>
     <string name="nudge_mission_3">Misión de hoy: Añade una nota a tu último antojo</string>
+    <string name="insight_title">Perspectiva inteligente</string>
+    <string name="insight_text">La mayoría de tus antojos de %1$s ocurren por la %2$s (%3$d%%)</string>
+    <string name="health_title">Recuperación del cuerpo</string>
+    <string name="health_hours_since">%1$d h desde el último cigarrillo</string>
+    <string name="health_nicotine">Nicotina %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Compartir mi progreso</string>
+    <string name="share_smoke_free">libre de humo</string>
+    <string name="share_cigarettes_avoided">Cigarrillos evitados</string>
+    <string name="share_money_saved">Dinero ahorrado</string>
+    <string name="share_achievements">Logros</string>
+    <string name="share_tagline">Dejar de fumar es más fácil cada día — BreathUp</string>
 </resources>

@@ -498,4 +498,16 @@
     <string name="nudge_mission_1">Missione di oggi: Resisti a una voglia con una pausa consapevole</string>
     <string name="nudge_mission_2">Missione di oggi: Rivedi le statistiche dei trigger per un minuto</string>
     <string name="nudge_mission_3">Missione di oggi: Aggiungi una nota alla tua ultima voglia</string>
+    <string name="insight_title">Analisi intelligente</string>
+    <string name="insight_text">La maggior parte delle tue voglie di %1$s avviene di %2$s (%3$d%%)</string>
+    <string name="health_title">Recupero del corpo</string>
+    <string name="health_hours_since">%1$d h dall\'ultima sigaretta</string>
+    <string name="health_nicotine">Nicotina %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Condividi i miei progressi</string>
+    <string name="share_smoke_free">senza fumo</string>
+    <string name="share_cigarettes_avoided">Sigarette evitate</string>
+    <string name="share_money_saved">Denaro risparmiato</string>
+    <string name="share_achievements">Obiettivi</string>
+    <string name="share_tagline">Smettere diventa più facile ogni giorno — BreathUp</string>
 </resources>

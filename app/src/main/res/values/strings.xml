@@ -489,4 +489,16 @@
     <string name="nudge_mission_1">Today\'s mission: resist one craving with a mindful pause</string>
     <string name="nudge_mission_2">Today\'s mission: review your trigger stats for one minute</string>
     <string name="nudge_mission_3">Today\'s mission: add a note to your last craving</string>
+    <string name="insight_title">Smart insight</string>
+    <string name="insight_text">Most of your %1$s cravings happen in the %2$s (%3$d%%)</string>
+    <string name="health_title">Body recovery</string>
+    <string name="health_hours_since">%1$d h since last cigarette</string>
+    <string name="health_nicotine">Nicotine %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Share my progress</string>
+    <string name="share_smoke_free">smoke-free</string>
+    <string name="share_cigarettes_avoided">Cigarettes avoided</string>
+    <string name="share_money_saved">Money saved</string>
+    <string name="share_achievements">Achievements</string>
+    <string name="share_tagline">Quitting is easier every day — BreathUp</string>
 </resources>

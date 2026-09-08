@@ -494,4 +494,16 @@
     <string name="nudge_mission_1">Heutige Mission: Widerstehe einem Verlangen mit einer achtsamen Pause</string>
     <string name="nudge_mission_2">Heutige Mission: Sieh dir deine Auslöser-Statistiken eine Minute lang an</string>
     <string name="nudge_mission_3">Heutige Mission: Füge deinem letzten Verlangen eine Notiz hinzu</string>
+    <string name="insight_title">Smarte Erkenntnis</string>
+    <string name="insight_text">Die meisten deiner %1$s-Cravings passieren am %2$s (%3$d%%)</string>
+    <string name="health_title">Körperliche Erholung</string>
+    <string name="health_hours_since">%1$d Std. seit der letzten Zigarette</string>
+    <string name="health_nicotine">Nikotin %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Meinen Fortschritt teilen</string>
+    <string name="share_smoke_free">rauchfrei</string>
+    <string name="share_cigarettes_avoided">Vermeidete Zigaretten</string>
+    <string name="share_money_saved">Gespartes Geld</string>
+    <string name="share_achievements">Erfolge</string>
+    <string name="share_tagline">Aufhören wird jeden Tag leichter — BreathUp</string>
 </resources>

@@ -501,4 +501,16 @@
     <string name="nudge_mission_1">Mission du jour : Résistez à une envie avec une pause consciente</string>
     <string name="nudge_mission_2">Mission du jour : Consultez vos statistiques de déclencheurs pendant une minute</string>
     <string name="nudge_mission_3">Mission du jour : Ajoutez une note à votre dernière envie</string>
+    <string name="insight_title">Analyse intelligente</string>
+    <string name="insight_text">La plupart de vos envies de %1$s surviennent le %2$s (%3$d%%)</string>
+    <string name="health_title">Récupération du corps</string>
+    <string name="health_hours_since">%1$d h depuis la dernière cigarette</string>
+    <string name="health_nicotine">Nicotine %1$d%%</string>
+    <string name="health_co">CO %1$d%%</string>
+    <string name="share_progress">Partager ma progression</string>
+    <string name="share_smoke_free">sans fumée</string>
+    <string name="share_cigarettes_avoided">Cigarettes évitées</string>
+    <string name="share_money_saved">Argent économisé</string>
+    <string name="share_achievements">Succès</string>
+    <string name="share_tagline">Arrêter devient plus facile chaque jour — BreathUp</string>
 </resources>
