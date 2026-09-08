@@ -9,6 +9,9 @@ import com.smokingtracker.HomeViewModel
 import com.smokingtracker.MainViewModel
 import com.smokingtracker.StatisticsManager
 import com.smokingtracker.data.DataStoreManager
+import com.smokingtracker.data.HistoricalBaselineStore
+import com.smokingtracker.data.NotificationPreferencesStore
+import com.smokingtracker.data.TaperingPreferencesStore
 import com.smokingtracker.data.local.SmokingDatabase
 import com.smokingtracker.data.repository.SmokingRepository
 import com.smokingtracker.data.repository.SmokingRepositoryImpl
@@ -28,6 +31,9 @@ val appModule = module {
     single { AchievementsManager() }
     single { StatisticsManager() }
     single { DataStoreManager(androidContext()) }
+    single { TaperingPreferencesStore(androidContext()) }
+    single { NotificationPreferencesStore(androidContext()) }
+    single { HistoricalBaselineStore(androidContext()) }
     single { GitHubUpdateManager(androidContext()) }
     single {
         Room.databaseBuilder(
@@ -40,7 +46,7 @@ val appModule = module {
     single<SmokingRepository> { SmokingRepositoryImpl(get(), get(), get()) }
     single { AchievementsCoordinator(get(), get(), get(), androidApplication(), get()) }
     single { AppIconManager(androidApplication()) }
-    single { BackupManager(androidApplication(), get(), get(), get(), get()) }
-    viewModel { MainViewModel(get(), get(), get(), get(), get(), get(), androidApplication()) }
-    viewModel { HomeViewModel(get(), get(), get(), androidApplication()) }
+    single { BackupManager(androidApplication(), get(), get(), get(), get(), get(), get(), get()) }
+    viewModel { MainViewModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), androidApplication()) }
+    viewModel { HomeViewModel(get(), get(), get(), get(), androidApplication()) }
 }

@@ -8,6 +8,9 @@ import com.google.gson.annotations.SerializedName
 import com.smokingtracker.data.AppIconPreset
 import com.smokingtracker.data.ContainerStyle
 import com.smokingtracker.data.DataStoreManager
+import com.smokingtracker.data.HistoricalBaselineStore
+import com.smokingtracker.data.NotificationPreferencesStore
+import com.smokingtracker.data.TaperingPreferencesStore
 import com.smokingtracker.data.local.SmokingEntryEntity
 import com.smokingtracker.data.repository.SmokingRepository
 import com.smokingtracker.widget.WidgetUpdateManager
@@ -20,7 +23,10 @@ class BackupManager(
     private val dataStoreManager: DataStoreManager,
     private val repository: SmokingRepository,
     private val achievementsCoordinator: AchievementsCoordinator,
-    private val appIconManager: AppIconManager
+    private val appIconManager: AppIconManager,
+    private val taperingStore: TaperingPreferencesStore,
+    private val notificationStore: NotificationPreferencesStore,
+    private val baselineStore: HistoricalBaselineStore
 ) {
     private val gson = Gson()
 
@@ -51,25 +57,25 @@ class BackupManager(
             customFontWeight = dataStoreManager.customFontWeight.first(),
             customFontWidth = dataStoreManager.customFontWidth.first(),
             customFontRoundness = dataStoreManager.customFontRoundness.first(),
-            taperingPlanEnabled = dataStoreManager.taperingPlanEnabled.first(),
-            taperingIntervalDays = dataStoreManager.taperingIntervalDays.first(),
-            lastTaperingCheckinDate = dataStoreManager.lastTaperingCheckinDate.first(),
-            hasHistoricalBaseline = dataStoreManager.hasHistoricalBaseline.first(),
-            historicalStartDate = dataStoreManager.historicalStartDate.first(),
-            historicalDailyAvg = dataStoreManager.historicalDailyAvg.first(),
-            historicalPackPrice = dataStoreManager.historicalPackPrice.first(),
-            historicalPackSize = dataStoreManager.historicalPackSize.first(),
-            historicalTriggerPriorities = dataStoreManager.historicalTriggerPriorities.first(),
+            taperingPlanEnabled = taperingStore.taperingPlanEnabled.first(),
+            taperingIntervalDays = taperingStore.taperingIntervalDays.first(),
+            lastTaperingCheckinDate = taperingStore.lastTaperingCheckinDate.first(),
+            hasHistoricalBaseline = baselineStore.hasHistoricalBaseline.first(),
+            historicalStartDate = baselineStore.historicalStartDate.first(),
+            historicalDailyAvg = baselineStore.historicalDailyAvg.first(),
+            historicalPackPrice = baselineStore.historicalPackPrice.first(),
+            historicalPackSize = baselineStore.historicalPackSize.first(),
+            historicalTriggerPriorities = baselineStore.historicalTriggerPriorities.first(),
             appIcon = dataStoreManager.appIcon.first().name,
             checkUpdatesOnStart = dataStoreManager.checkUpdatesOnStart.first(),
             customTriggers = dataStoreManager.customTriggers.first(),
             disabledDefaultTriggers = dataStoreManager.disabledDefaultTriggers.first(),
-            notificationEnabled = dataStoreManager.ongoingNotificationEnabled.first(),
-            notificationLowPriority = dataStoreManager.notificationLowPriority.first(),
-            notificationShowTimer = dataStoreManager.notificationShowTimer.first(),
-            notificationShowProgress = dataStoreManager.notificationShowProgress.first(),
-            notificationShowAddButton = dataStoreManager.notificationShowAddButton.first(),
-            notificationShowResistButton = dataStoreManager.notificationShowResistButton.first()
+            notificationEnabled = notificationStore.ongoingNotificationEnabled.first(),
+            notificationLowPriority = notificationStore.notificationLowPriority.first(),
+            notificationShowTimer = notificationStore.notificationShowTimer.first(),
+            notificationShowProgress = notificationStore.notificationShowProgress.first(),
+            notificationShowAddButton = notificationStore.notificationShowAddButton.first(),
+            notificationShowResistButton = notificationStore.notificationShowResistButton.first()
         )
 
         application.contentResolver.openOutputStream(uri)?.use { outputStream ->

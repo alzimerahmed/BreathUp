@@ -10,6 +10,7 @@ import com.smokingtracker.MainActivity
 import com.smokingtracker.R
 import com.smokingtracker.SmokingTrackerApp
 import com.smokingtracker.data.DataStoreManager
+import com.smokingtracker.data.NotificationPreferencesStore
 import com.smokingtracker.data.repository.SmokingRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.first
@@ -34,10 +35,11 @@ object OngoingNotificationManager : KoinComponent {
     }
 
     private suspend fun updateInternal(context: Context) {
+        val notificationStore: NotificationPreferencesStore = get()
         val dataStoreManager: DataStoreManager = get()
         val repository: SmokingRepository = get()
 
-        val isEnabled = dataStoreManager.ongoingNotificationEnabled.first()
+        val isEnabled = notificationStore.ongoingNotificationEnabled.first()
         val notificationManager = NotificationManagerCompat.from(context)
 
         if (!isEnabled) {
@@ -53,11 +55,11 @@ object OngoingNotificationManager : KoinComponent {
             if (!hasPermission) return
         }
 
-        val isLowPriority = dataStoreManager.notificationLowPriority.first()
-        val showTimer = dataStoreManager.notificationShowTimer.first()
-        val showProgress = dataStoreManager.notificationShowProgress.first()
-        val showAddButton = dataStoreManager.notificationShowAddButton.first()
-        val showResistButton = dataStoreManager.notificationShowResistButton.first()
+        val isLowPriority = notificationStore.notificationLowPriority.first()
+        val showTimer = notificationStore.notificationShowTimer.first()
+        val showProgress = notificationStore.notificationShowProgress.first()
+        val showAddButton = notificationStore.notificationShowAddButton.first()
+        val showResistButton = notificationStore.notificationShowResistButton.first()
         val dailyLimit = dataStoreManager.dailyLimit.first()
 
         val channelId = if (isLowPriority) {

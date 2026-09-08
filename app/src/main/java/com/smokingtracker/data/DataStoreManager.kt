@@ -353,66 +353,6 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    val ongoingNotificationEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_ENABLED] ?: false
-    }
-
-    val notificationLowPriority: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_LOW_PRIORITY] ?: true
-    }
-
-    val notificationShowTimer: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_SHOW_TIMER] ?: true
-    }
-
-    val notificationShowProgress: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_SHOW_PROGRESS] ?: true
-    }
-
-    val notificationShowAddButton: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_SHOW_ADD_BUTTON] ?: true
-    }
-
-    val notificationShowResistButton: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[NOTIFICATION_SHOW_RESIST_BUTTON] ?: false
-    }
-
-    suspend fun saveOngoingNotificationEnabled(enabled: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_ENABLED] = enabled
-        }
-    }
-
-    suspend fun saveNotificationLowPriority(lowPriority: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_LOW_PRIORITY] = lowPriority
-        }
-    }
-
-    suspend fun saveNotificationShowTimer(show: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_SHOW_TIMER] = show
-        }
-    }
-
-    suspend fun saveNotificationShowProgress(show: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_SHOW_PROGRESS] = show
-        }
-    }
-
-    suspend fun saveNotificationShowAddButton(show: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_SHOW_ADD_BUTTON] = show
-        }
-    }
-
-    suspend fun saveNotificationShowResistButton(show: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[NOTIFICATION_SHOW_RESIST_BUTTON] = show
-        }
-    }
-
     val customTriggers: Flow<List<String>> = context.dataStore.data.map { preferences ->
         val json = preferences[CUSTOM_TRIGGERS] ?: "[]"
         val listType = object : TypeToken<List<String>>() {}.type
@@ -527,61 +467,6 @@ class DataStoreManager(private val context: Context) {
             prefs[ANALYTICS_VISIT_COUNT] = newCount
         }
         return newCount
-    }
-
-    val taperingPlanEnabled: Flow<Boolean> = context.dataStore.data.map { it[TAPERING_PLAN_ENABLED] ?: false }
-    val taperingIntervalDays: Flow<Int> = context.dataStore.data.map { it[TAPERING_INTERVAL_DAYS] ?: 7 }
-    val lastTaperingCheckinDate: Flow<Long> = context.dataStore.data.map { it[LAST_TAPERING_CHECKIN_DATE] ?: 0L }
-
-    suspend fun setTaperingPlanEnabled(enabled: Boolean) {
-        context.dataStore.edit { it[TAPERING_PLAN_ENABLED] = enabled }
-    }
-
-    suspend fun setTaperingIntervalDays(days: Int) {
-        context.dataStore.edit { it[TAPERING_INTERVAL_DAYS] = days }
-    }
-
-    suspend fun updateLastTaperingCheckinDate(timestamp: Long) {
-        context.dataStore.edit { it[LAST_TAPERING_CHECKIN_DATE] = timestamp }
-    }
-
-    val hasHistoricalBaseline: Flow<Boolean> = context.dataStore.data.map { it[HAS_HISTORICAL_BASELINE] ?: false }
-    val historicalStartDate: Flow<Long> = context.dataStore.data.map { it[HISTORICAL_START_DATE] ?: 0L }
-    val historicalDailyAvg: Flow<Int> = context.dataStore.data.map { it[HISTORICAL_DAILY_AVG] ?: 0 }
-    val historicalPackPrice: Flow<Float> = context.dataStore.data.map { it[HISTORICAL_PACK_PRICE] ?: 0f }
-    val historicalPackSize: Flow<Int> = context.dataStore.data.map { it[HISTORICAL_PACK_SIZE] ?: 20 }
-    val historicalTriggerPriorities: Flow<List<String>> = context.dataStore.data.map { prefs ->
-        val json = prefs[HISTORICAL_TRIGGER_PRIORITIES] ?: "[]"
-        val listType = object : TypeToken<List<String>>() {}.type
-        gson.fromJson(json, listType) ?: emptyList()
-    }
-
-    suspend fun saveHistoricalBaseline(
-        startDate: Long,
-        dailyAvg: Int,
-        packPrice: Float,
-        packSize: Int,
-        triggerPriorities: List<String>
-    ) {
-        context.dataStore.edit { prefs ->
-            prefs[HAS_HISTORICAL_BASELINE] = true
-            prefs[HISTORICAL_START_DATE] = startDate
-            prefs[HISTORICAL_DAILY_AVG] = dailyAvg
-            prefs[HISTORICAL_PACK_PRICE] = packPrice
-            prefs[HISTORICAL_PACK_SIZE] = packSize
-            prefs[HISTORICAL_TRIGGER_PRIORITIES] = gson.toJson(triggerPriorities)
-        }
-    }
-
-    suspend fun clearHistoricalBaseline() {
-        context.dataStore.edit { prefs ->
-            prefs[HAS_HISTORICAL_BASELINE] = false
-            prefs.remove(HISTORICAL_START_DATE)
-            prefs.remove(HISTORICAL_DAILY_AVG)
-            prefs.remove(HISTORICAL_PACK_PRICE)
-            prefs.remove(HISTORICAL_PACK_SIZE)
-            prefs.remove(HISTORICAL_TRIGGER_PRIORITIES)
-        }
     }
 
     val containerBorderEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->

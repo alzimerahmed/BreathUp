@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.smokingtracker.data.DataStoreManager
+import com.smokingtracker.data.TaperingPreferencesStore
 import com.smokingtracker.data.local.SmokingEntryEntity
 import com.smokingtracker.data.repository.SmokingRepository
 import com.smokingtracker.widget.WidgetUpdateManager
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val repository: SmokingRepository,
     private val dataStoreManager: DataStoreManager,
+    private val taperingStore: TaperingPreferencesStore,
     private val achievementsCoordinator: AchievementsCoordinator,
     application: Application
 ) : AndroidViewModel(application) {
@@ -64,7 +66,7 @@ class HomeViewModel(
     private val _showTaperingCheckIn = MutableStateFlow(false)
     val showTaperingCheckIn: StateFlow<Boolean> = _showTaperingCheckIn.asStateFlow()
 
-    val taperingIntervalDays: StateFlow<Int> = dataStoreManager.taperingIntervalDays
+    val taperingIntervalDays: StateFlow<Int> = taperingStore.taperingIntervalDays
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 7)
 
     fun addCustomTrigger(name: String, onResult: (String?) -> Unit = {}) {
@@ -152,10 +154,10 @@ class HomeViewModel(
 
     fun checkTaperingPlanEligibility() {
         viewModelScope.launch {
-            val enabled = dataStoreManager.taperingPlanEnabled.first()
+            val enabled = taperingStore.taperingPlanEnabled.first()
             if (!enabled) return@launch
-            val intervalDays = dataStoreManager.taperingIntervalDays.first()
-            val lastCheckin = dataStoreManager.lastTaperingCheckinDate.first()
+            val intervalDays = taperingStore.taperingIntervalDays.first()
+            val lastCheckin = taperingStore.lastTaperingCheckinDate.first()
             val now = System.currentTimeMillis()
             val limit = dataStoreManager.dailyLimit.first()
             if (limit <= 0) return@launch
@@ -181,14 +183,14 @@ class HomeViewModel(
             val currentLimit = dataStoreManager.dailyLimit.first()
             val newLimit = (currentLimit - 1).coerceAtLeast(0)
             dataStoreManager.setDailyLimit(newLimit)
-            dataStoreManager.updateLastTaperingCheckinDate(System.currentTimeMillis())
+            taperingStore.updateLastTaperingCheckinDate(System.currentTimeMillis())
             _showTaperingCheckIn.value = false
         }
     }
 
     fun keepTaperingLimit() {
         viewModelScope.launch {
-            dataStoreManager.updateLastTaperingCheckinDate(System.currentTimeMillis())
+            taperingStore.updateLastTaperingCheckinDate(System.currentTimeMillis())
             _showTaperingCheckIn.value = false
         }
     }
@@ -196,9 +198,9 @@ class HomeViewModel(
     fun snoozeTaperingCheckIn() {
         viewModelScope.launch {
             val now = System.currentTimeMillis()
-            val intervalMs = dataStoreManager.taperingIntervalDays.first() * 24L * 60L * 60L * 1000L
+            val intervalMs = taperingStore.taperingIntervalDays.first() * 24L * 60L * 60L * 1000L
             val snoozeMs = 3L * 24L * 60L * 60L * 1000L
-            dataStoreManager.updateLastTaperingCheckinDate(now - intervalMs + snoozeMs)
+            taperingStore.updateLastTaperingCheckinDate(now - intervalMs + snoozeMs)
             _showTaperingCheckIn.value = false
         }
     }

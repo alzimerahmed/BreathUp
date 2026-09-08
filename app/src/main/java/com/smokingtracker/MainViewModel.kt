@@ -8,6 +8,9 @@ import com.smokingtracker.data.AppIconPreset
 import com.smokingtracker.data.ColorPreset
 import com.smokingtracker.data.ContainerStyle
 import com.smokingtracker.data.DataStoreManager
+import com.smokingtracker.data.HistoricalBaselineStore
+import com.smokingtracker.data.NotificationPreferencesStore
+import com.smokingtracker.data.TaperingPreferencesStore
 import com.smokingtracker.data.FontPreset
 import com.smokingtracker.data.ThemePreference
 import com.smokingtracker.data.repository.SmokingRepository
@@ -31,6 +34,9 @@ class MainViewModel(
     private val achievementsCoordinator: AchievementsCoordinator,
     private val appIconManager: AppIconManager,
     private val backupManager: BackupManager,
+    private val taperingStore: TaperingPreferencesStore,
+    private val notificationStore: NotificationPreferencesStore,
+    private val baselineStore: HistoricalBaselineStore,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -190,37 +196,37 @@ class MainViewModel(
         initialValue = 0f
     )
 
-    val hasHistoricalBaseline: StateFlow<Boolean> = dataStoreManager.hasHistoricalBaseline.stateIn(
+    val hasHistoricalBaseline: StateFlow<Boolean> = baselineStore.hasHistoricalBaseline.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = false
     )
 
-    val historicalStartDate: StateFlow<Long> = dataStoreManager.historicalStartDate.stateIn(
+    val historicalStartDate: StateFlow<Long> = baselineStore.historicalStartDate.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = 0L
     )
 
-    val historicalDailyAvg: StateFlow<Int> = dataStoreManager.historicalDailyAvg.stateIn(
+    val historicalDailyAvg: StateFlow<Int> = baselineStore.historicalDailyAvg.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = 0
     )
 
-    val historicalPackPrice: StateFlow<Float> = dataStoreManager.historicalPackPrice.stateIn(
+    val historicalPackPrice: StateFlow<Float> = baselineStore.historicalPackPrice.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = 0f
     )
 
-    val historicalPackSize: StateFlow<Int> = dataStoreManager.historicalPackSize.stateIn(
+    val historicalPackSize: StateFlow<Int> = baselineStore.historicalPackSize.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = 20
     )
 
-    val historicalTriggerPriorities: StateFlow<List<String>> = dataStoreManager.historicalTriggerPriorities.stateIn(
+    val historicalTriggerPriorities: StateFlow<List<String>> = baselineStore.historicalTriggerPriorities.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList()
@@ -232,37 +238,37 @@ class MainViewModel(
     val disabledDefaultTriggers: StateFlow<Set<String>> = dataStoreManager.disabledDefaultTriggers
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptySet())
 
-    val ongoingNotificationEnabled: StateFlow<Boolean> = dataStoreManager.ongoingNotificationEnabled.stateIn(
+    val ongoingNotificationEnabled: StateFlow<Boolean> = notificationStore.ongoingNotificationEnabled.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = false
     )
 
-    val notificationLowPriority: StateFlow<Boolean> = dataStoreManager.notificationLowPriority.stateIn(
+    val notificationLowPriority: StateFlow<Boolean> = notificationStore.notificationLowPriority.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = true
     )
 
-    val notificationShowTimer: StateFlow<Boolean> = dataStoreManager.notificationShowTimer.stateIn(
+    val notificationShowTimer: StateFlow<Boolean> = notificationStore.notificationShowTimer.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = true
     )
 
-    val notificationShowProgress: StateFlow<Boolean> = dataStoreManager.notificationShowProgress.stateIn(
+    val notificationShowProgress: StateFlow<Boolean> = notificationStore.notificationShowProgress.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = true
     )
 
-    val notificationShowAddButton: StateFlow<Boolean> = dataStoreManager.notificationShowAddButton.stateIn(
+    val notificationShowAddButton: StateFlow<Boolean> = notificationStore.notificationShowAddButton.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = true
     )
 
-    val notificationShowResistButton: StateFlow<Boolean> = dataStoreManager.notificationShowResistButton.stateIn(
+    val notificationShowResistButton: StateFlow<Boolean> = notificationStore.notificationShowResistButton.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = false
@@ -304,13 +310,13 @@ class MainViewModel(
 
     val updateCheckState: StateFlow<UpdateCheckState> = updateManager.updateCheckState
 
-    val taperingPlanEnabled: StateFlow<Boolean> = dataStoreManager.taperingPlanEnabled.stateIn(
+    val taperingPlanEnabled: StateFlow<Boolean> = taperingStore.taperingPlanEnabled.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = false
     )
 
-    val taperingIntervalDays: StateFlow<Int> = dataStoreManager.taperingIntervalDays.stateIn(
+    val taperingIntervalDays: StateFlow<Int> = taperingStore.taperingIntervalDays.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = 7
@@ -396,10 +402,10 @@ class MainViewModel(
 
     fun setTaperingPlanSettings(enabled: Boolean, intervalDays: Int) {
         viewModelScope.launch {
-            dataStoreManager.setTaperingPlanEnabled(enabled)
-            dataStoreManager.setTaperingIntervalDays(intervalDays)
-            if (enabled && dataStoreManager.lastTaperingCheckinDate.first() == 0L) {
-                dataStoreManager.updateLastTaperingCheckinDate(System.currentTimeMillis())
+            taperingStore.setTaperingPlanEnabled(enabled)
+            taperingStore.setTaperingIntervalDays(intervalDays)
+            if (enabled && taperingStore.lastTaperingCheckinDate.first() == 0L) {
+                taperingStore.updateLastTaperingCheckinDate(System.currentTimeMillis())
             }
         }
     }
@@ -502,42 +508,42 @@ class MainViewModel(
 
     fun updateOngoingNotificationEnabled(enabled: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveOngoingNotificationEnabled(enabled)
+            notificationStore.saveOngoingNotificationEnabled(enabled)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
 
     fun updateNotificationLowPriority(lowPriority: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveNotificationLowPriority(lowPriority)
+            notificationStore.saveNotificationLowPriority(lowPriority)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
 
     fun updateNotificationShowTimer(show: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveNotificationShowTimer(show)
+            notificationStore.saveNotificationShowTimer(show)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
 
     fun updateNotificationShowProgress(show: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveNotificationShowProgress(show)
+            notificationStore.saveNotificationShowProgress(show)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
 
     fun updateNotificationShowAddButton(show: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveNotificationShowAddButton(show)
+            notificationStore.saveNotificationShowAddButton(show)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
 
     fun updateNotificationShowResistButton(show: Boolean) {
         viewModelScope.launch {
-            dataStoreManager.saveNotificationShowResistButton(show)
+            notificationStore.saveNotificationShowResistButton(show)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
         }
     }
@@ -562,7 +568,7 @@ class MainViewModel(
         triggerPriorities: List<String>
     ) {
         viewModelScope.launch {
-            dataStoreManager.saveHistoricalBaseline(
+            baselineStore.saveHistoricalBaseline(
                 startDate = startDate,
                 dailyAvg = dailyAvg,
                 packPrice = packPrice,
@@ -574,7 +580,7 @@ class MainViewModel(
 
     fun clearHistoricalBaseline() {
         viewModelScope.launch {
-            dataStoreManager.clearHistoricalBaseline()
+            baselineStore.clearHistoricalBaseline()
         }
     }
 }
