@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SmokingYou</string>
-    <string name="registration_title">Добро пожаловать в SmokingYou</string>
+    <string name="app_name">BreathUp</string>
+    <string name="registration_title">Добро пожаловать в BreathUp</string>
     <string name="registration_subtitle">Твой персональный трекер курения</string>
     <string name="registration_button">Начать Отслеживание</string>
-    <string name="home_title">SmokingYou</string>
+    <string name="home_title">BreathUp</string>
     <string name="add_entry">Добавить</string>
     <string name="time_calculating">Вычисление…</string>
     <string name="invalid_future_entry">Неверное время</string>
@@ -176,7 +176,7 @@
     <string name="about_app">О приложении</string>
     <string name="about_app_desc">Версия, разработчик и ссылки</string>
     <string name="app_version">Версия приложения: %1$s</string>
-    <string name="made_with_love">Сделано с ❤ от Bodyaant</string>
+    <string name="made_with_love">Сделано с ❤ от Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
     <string name="link_telegram">Telegram</string>
     <string name="settings_font">Шрифт интерфейса</string>
@@ -313,11 +313,11 @@
     <string name="stats_days_unit_short">%d д.</string>
 
     <string name="settings_check_updates_on_start">Проверять обновления при запуске</string>
-    <string name="settings_check_updates_on_start_desc">Автоматически искать новые версии SmokingYou</string>
+    <string name="settings_check_updates_on_start_desc">Автоматически искать новые версии BreathUp</string>
     <string name="settings_check_updates">Проверить обновления</string>
     <string name="settings_check_updates_desc">Вручную проверить наличие новых версий на GitHub</string>
     <string name="update_dialog_title">Доступно обновление</string>
-    <string name="update_dialog_message">Доступна новая версия SmokingYou (%1$s). Хотите скачать её
+    <string name="update_dialog_message">Доступна новая версия BreathUp (%1$s). Хотите скачать её
         сейчас?</string>
     <string name="update_dialog_download">Скачать</string>
     <string name="update_dialog_later">Позже</string>
@@ -482,7 +482,7 @@
     <string name="notification_channel_ongoing_default_name">Постоянный статус</string>
     <string name="notification_channel_ongoing_desc">Отображает время с последней сигареты и дневной прогресс</string>
     <string name="notification_title_smoke_free">Не курите: %1$s</string>
-    <string name="notification_title_app_name">SmokingYou</string>
+    <string name="notification_title_app_name">BreathUp</string>
     <string name="notification_content_with_limit">Сегодня: %1$d из %2$d (%3$d%%)</string>
     <string name="notification_content_no_limit">Сегодня выкурено: %1$d</string>
     <string name="notification_content_resisted_count"> • Сдержано: %1$d</string>

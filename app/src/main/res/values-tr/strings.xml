@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SmokingYou</string>
-    <string name="registration_title">SmokingYou\'a Hoş Geldiniz</string>
+    <string name="app_name">BreathUp</string>
+    <string name="registration_title">BreathUp\'a Hoş Geldiniz</string>
     <string name="registration_subtitle">Kişisel sigara takipçiniz</string>
     <string name="registration_button">Takibe Başla</string>
-    <string name="home_title">SmokingYou</string>
+    <string name="home_title">BreathUp</string>
     <string name="add_entry">Giriş Ekle</string>
     <string name="time_calculating">Hesaplanıyor…</string>
     <string name="invalid_future_entry">Geçersiz gelecek zaman girişi</string>
@@ -173,7 +173,7 @@
     <string name="about_app">Uygulama hakkında</string>
     <string name="about_app_desc">Sürüm, geliştirici ve bağlantılar</string>
     <string name="app_version">Uygulama Sürümü: %1$s</string>
-    <string name="made_with_love">Bodyaant tarafından ❤ ile yapıldı</string>
+    <string name="made_with_love">Alzimer Ahmed tarafından ❤ ile yapıldı</string>
     <string name="link_github">GitHub</string>
     <string name="link_telegram">Telegram</string>
     <string name="settings_font">Arayüz Yazı Tipi</string>
@@ -311,13 +311,13 @@
     <string name="graph_no_data_desc">Grafik verilerini görmek için kayıt ekleyin</string>
 
     <string name="settings_check_updates_on_start">Başlangıçta güncellemeleri denetle</string>
-    <string name="settings_check_updates_on_start_desc">Yeni SmokingYou sürümlerini otomatik olarak
+    <string name="settings_check_updates_on_start_desc">Yeni BreathUp sürümlerini otomatik olarak
         ara</string>
     <string name="settings_check_updates">Güncellemeleri Denetle</string>
     <string name="settings_check_updates_desc">GitHub\'da yeni bir sürüm olup olmadığını manuel
         olarak kontrol et</string>
     <string name="update_dialog_title">Yeni Sürüm Mevcut</string>
-    <string name="update_dialog_message">SmokingYou\'nun yeni bir sürümü (%1$s) mevcut. Şimdi
+    <string name="update_dialog_message">BreathUp\'nun yeni bir sürümü (%1$s) mevcut. Şimdi
         indirmek ister misiniz?</string>
     <string name="update_dialog_download">İndir</string>
     <string name="update_dialog_later">Sonra</string>
@@ -480,7 +480,7 @@
     <string name="notification_channel_ongoing_default_name">Kalıcı Durum</string>
     <string name="notification_channel_ongoing_desc">Sigarasızlık sayacını ve günlük içim ilerlemesini gösterir</string>
     <string name="notification_title_smoke_free">Sigarasız: %1$s</string>
-    <string name="notification_title_app_name">SmokingYou</string>
+    <string name="notification_title_app_name">BreathUp</string>
     <string name="notification_content_with_limit">Bugün: %1$d / %2$d (%%%3$d)</string>
     <string name="notification_content_no_limit">Bugün içilen: %1$d</string>
     <string name="notification_content_resisted_count"> • Direnilen: %1$d</string>

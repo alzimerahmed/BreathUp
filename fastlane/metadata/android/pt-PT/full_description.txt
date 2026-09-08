@@ -1,4 +1,4 @@
-SmokingYou é um rastreador de tabagismo minimalista para Android baseado em Material 3 Expressive.
+BreathUp é um rastreador de tabagismo minimalista para Android baseado em Material 3 Expressive.
 
 Recursos:
 - Registo de hábitos: Registe com apenas um toque. Temporizador sem fumar em tempo real.

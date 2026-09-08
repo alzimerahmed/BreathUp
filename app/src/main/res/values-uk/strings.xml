@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SmokingYou</string>
-    <string name="registration_title">Ласкаво просимо до SmokingYou</string>
+    <string name="app_name">BreathUp</string>
+    <string name="registration_title">Ласкаво просимо до BreathUp</string>
     <string name="registration_subtitle">Твій персональний трекер куріння</string>
     <string name="registration_button">Почати відстеження</string>
-    <string name="home_title">SmokingYou</string>
+    <string name="home_title">BreathUp</string>
     <string name="add_entry">Додати</string>
     <string name="time_calculating">Обчислення…</string>
     <string name="invalid_future_entry">Недійсний час</string>
@@ -176,7 +176,7 @@
     <string name="about_app">Про додаток</string>
     <string name="about_app_desc">Версія, розробник та посилання</string>
     <string name="app_version">Версія додатка: %1$s</string>
-    <string name="made_with_love">Зроблено з ❤ від Bodyaant</string>
+    <string name="made_with_love">Зроблено з ❤ від Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
     <string name="link_telegram">Telegram</string>
     <string name="settings_font">Шрифт інтерфейсу</string>
@@ -314,11 +314,11 @@
     <string name="graph_no_data_desc">Додавайте записи, щоб побачити графік</string>
 
     <string name="settings_check_updates_on_start">Перевіряти оновлення при запуске</string>
-    <string name="settings_check_updates_on_start_desc">Автоматично шукати нові версії SmokingYou</string>
+    <string name="settings_check_updates_on_start_desc">Автоматично шукати нові версії BreathUp</string>
     <string name="settings_check_updates">Перевірити оновлення</string>
     <string name="settings_check_updates_desc">Вручну перевірити наявність нових версій на GitHub</string>
     <string name="update_dialog_title">Доступне оновлення</string>
-    <string name="update_dialog_message">Доступна нова версія SmokingYou (%1$s). Хочете завантажити
+    <string name="update_dialog_message">Доступна нова версія BreathUp (%1$s). Хочете завантажити
         її зараз?</string>
     <string name="update_dialog_download">Завантажити</string>
     <string name="update_dialog_later">Пізніше</string>
@@ -480,7 +480,7 @@
     <string name="notification_channel_ongoing_default_name">Постійний статус</string>
     <string name="notification_channel_ongoing_desc">Відображає час з останньої сигарети та денний прогрес</string>
     <string name="notification_title_smoke_free">Не курите: %1$s</string>
-    <string name="notification_title_app_name">SmokingYou</string>
+    <string name="notification_title_app_name">BreathUp</string>
     <string name="notification_content_with_limit">Сьогодні: %1$d з %2$d (%3$d%%)</string>
     <string name="notification_content_no_limit">Сьогодні викурено: %1$d</string>
     <string name="notification_content_resisted_count"> • Стримано: %1$d</string>

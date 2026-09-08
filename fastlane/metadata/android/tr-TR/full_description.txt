@@ -1,4 +1,4 @@
-SmokingYou, Material 3 Expressive tabanlı Android için minimalist ve veri odaklı bir sigara takip uygulamasıdır.
+BreathUp, Material 3 Expressive tabanlı Android için minimalist ve veri odaklı bir sigara takip uygulamasıdır.
 
 Özellikler:
 - Alışkanlık Takibi: Tek dokunuşla kayıt. Gerçek zamanlı sigarasızlık zamanlayıcısı.

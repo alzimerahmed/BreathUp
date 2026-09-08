@@ -17,8 +17,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material3.*
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialShapes
@@ -31,15 +29,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.platform.LocalClipboardManager
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import android.widget.Toast
 import com.smokingtracker.BuildConfig
 import com.smokingtracker.R
 
@@ -48,10 +42,6 @@ import com.smokingtracker.R
 fun AboutScreen(onBack: () -> Unit) {
     val cookieShape = MaterialShapes.Cookie12Sided.toShape()
     val uriHandler = LocalUriHandler.current
-    @Suppress("DEPRECATION")
-    val clipboardManager = LocalClipboardManager.current
-    val context = LocalContext.current
-
     val version = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
 
     val infiniteTransition = rememberInfiniteTransition(label = "rotation")
@@ -64,16 +54,6 @@ fun AboutScreen(onBack: () -> Unit) {
         ),
         label = "rotation"
     )
-
-    val usdtTrc20 = "TLvG5GqGTjQDWuDwzbQjRZdrwhbhGeCGKF"
-    val usdtErc20 = "0xc3b756aaf4c51acc51421ac08bb82779ba20f33a"
-    val usdtTon = "UQAi59fjZuZpGbSL8O7oSOTSkJItSWnjQT0YbBLSFf1jym8Y"
-    val copiedMessage = stringResource(R.string.address_copied)
-
-    val copyToClipboard: (String) -> Unit = { address ->
-        clipboardManager.setText(AnnotatedString(address))
-        Toast.makeText(context, copiedMessage, Toast.LENGTH_SHORT).show()
-    }
 
     Scaffold(
         topBar = {
@@ -202,67 +182,8 @@ fun AboutScreen(onBack: () -> Unit) {
                             text = stringResource(R.string.link_github),
                             iconRes = R.drawable.ic_github
                         ) {
-                            uriHandler.openUri("https://github.com/bodyaant/SmokingYou")
+                            uriHandler.openUri("https://github.com/alzimerahmed84/BreathUp")
                         }
-                        Spacer(modifier = Modifier.height(12.dp))
-                        LinkPill(
-                            text = stringResource(R.string.link_telegram),
-                            iconRes = R.drawable.ic_telegram
-                        ) {
-                            uriHandler.openUri("https://t.me/SmokingYouApp")
-                        }
-
-                        HorizontalDivider(
-                            modifier = Modifier.padding(vertical = 20.dp),
-                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
-                        )
-
-                        Text(
-                            text = stringResource(R.string.support_development),
-                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                            color = MaterialTheme.colorScheme.onSurface
-                        )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-                        SupportLinkPill(
-                            text = stringResource(R.string.support_boosty),
-                            icon = Icons.Filled.Favorite,
-                            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                            contentColor = MaterialTheme.colorScheme.onTertiaryContainer
-                        ) {
-                            uriHandler.openUri("https://boosty.to/bodyaant")
-                        }
-
-                        Spacer(modifier = Modifier.height(20.dp))
-
-                        Text(
-                            text = stringResource(R.string.crypto_wallets),
-                            style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier.align(Alignment.Start).padding(start = 4.dp, bottom = 8.dp)
-                        )
-
-                        CryptoWalletItem(
-                            network = "USDT (TRC20)",
-                            address = usdtTrc20,
-                            iconRes = R.drawable.ic_tron,
-                            onCopy = { copyToClipboard(usdtTrc20) }
-                        )
-
-                        CryptoWalletItem(
-                            network = "USDT (ERC20)",
-                            address = usdtErc20,
-                            iconRes = R.drawable.ic_ethereum,
-                            onCopy = { copyToClipboard(usdtErc20) }
-                        )
-
-                        CryptoWalletItem(
-                            network = "USDT (TON)",
-                            address = usdtTon,
-                            iconRes = R.drawable.ic_ton,
-                            onCopy = { copyToClipboard(usdtTon) }
-                        )
                     }
                 }
             }
@@ -300,118 +221,6 @@ fun LinkPill(
                 text = text,
                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold)
             )
-        }
-    }
-}
-
-@Composable
-fun SupportLinkPill(
-    text: String,
-    icon: ImageVector,
-    containerColor: Color,
-    contentColor: Color,
-    onClick: () -> Unit
-) {
-    Surface(
-        modifier = Modifier.fillMaxWidth().height(48.dp),
-        shape = CircleShape,
-        color = containerColor,
-        contentColor = contentColor,
-        onClick = onClick
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold)
-            )
-        }
-    }
-}
-
-@Composable
-fun CryptoWalletItem(
-    network: String,
-    address: String,
-    iconRes: Int? = null,
-    onCopy: () -> Unit
-) {
-    val shortenedAddress = if (address.length > 16) {
-        "${address.take(10)}...${address.takeLast(10)}"
-    } else {
-        address
-    }
-
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        shape = RoundedCornerShape(16.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
-        border = containerBorder(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f)),
-        onClick = onCopy
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            if (iconRes != null) {
-                Surface(
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f),
-                    modifier = Modifier.size(36.dp)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            painter = painterResource(id = iconRes),
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-            }
-            Column(
-                modifier = Modifier.weight(1f)
-            ) {
-                Text(
-                    text = network,
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = shortenedAddress,
-                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium),
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            FilledTonalIconButton(
-                onClick = onCopy,
-                modifier = Modifier.size(36.dp),
-                colors = IconButtonDefaults.filledTonalIconButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ContentCopy,
-                    contentDescription = stringResource(R.string.copy_address),
-                    modifier = Modifier.size(16.dp)
-                )
-            }
         }
     }
 }

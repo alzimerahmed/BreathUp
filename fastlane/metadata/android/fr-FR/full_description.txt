@@ -1,4 +1,4 @@
-SmokingYou est un suivi du tabagisme minimaliste axé sur les données pour Android basé sur Material 3 Expressive.
+BreathUp est un suivi du tabagisme minimaliste axé sur les données pour Android basé sur Material 3 Expressive.
 
 Fonctionnalités :
 - Suivi des habitudes : Enregistrement en un seul geste. Chronomètre sans fumée en temps réel.

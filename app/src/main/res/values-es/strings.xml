@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">SmokingYou</string>
-    <string name="registration_title">Bienvenido a SmokingYou</string>
+    <string name="app_name">BreathUp</string>
+    <string name="registration_title">Bienvenido a BreathUp</string>
     <string name="registration_subtitle">Tu rastreador personal de tabaco</string>
     <string name="registration_button">Empezar a registrar</string>
-    <string name="home_title">SmokingYou</string>
+    <string name="home_title">BreathUp</string>
     <string name="add_entry">Añadir registro</string>
     <string name="time_calculating">Calculando…</string>
     <string name="invalid_future_entry">Entrada futura no válida</string>
@@ -179,7 +179,7 @@
     <string name="about_app">Acerca de la app</string>
     <string name="about_app_desc">Versión, desarrollador y enlaces</string>
     <string name="app_version">Versión de la app: %1$s</string>
-    <string name="made_with_love">Hecho con ❤ por Bodyaant</string>
+    <string name="made_with_love">Hecho con ❤ por Alzimer Ahmed</string>
     <string name="link_github">GitHub</string>
     <string name="link_telegram">Telegram</string>
     <string name="settings_font">Fuente de interfaz</string>
@@ -317,12 +317,12 @@
 
     <string name="settings_check_updates_on_start">Buscar actualizaciones al iniciar</string>
     <string name="settings_check_updates_on_start_desc">Buscar automáticamente nuevas versiones de
-        SmokingYou</string>
+        BreathUp</string>
     <string name="settings_check_updates">Buscar actualizaciones</string>
     <string name="settings_check_updates_desc">Comprobar manualmente si hay una nueva versión en
         GitHub</string>
     <string name="update_dialog_title">Nueva versión disponible</string>
-    <string name="update_dialog_message">Hay una nueva versión de SmokingYou (%1$s) disponible.
+    <string name="update_dialog_message">Hay una nueva versión de BreathUp (%1$s) disponible.
         ¿Quieres descargarla ahora?</string>
     <string name="update_dialog_download">Descargar</string>
     <string name="update_dialog_later">Más tarde</string>
@@ -486,7 +486,7 @@
     <string name="notification_channel_ongoing_default_name">Estado continuo</string>
     <string name="notification_channel_ongoing_desc">Muestra el temporizador sin fumar y el progreso diario</string>
     <string name="notification_title_smoke_free">Sin fumar: %1$s</string>
-    <string name="notification_title_app_name">SmokingYou</string>
+    <string name="notification_title_app_name">BreathUp</string>
     <string name="notification_content_with_limit">Hoy: %1$d de %2$d (%3$d%%)</string>
     <string name="notification_content_no_limit">Hoy fumados: %1$d</string>
     <string name="notification_content_resisted_count"> • Resistidos: %1$d</string>
