@@ -27,9 +27,9 @@ android {
 
     val keystorePropsFile = file("C:/Users/shadd/keystores/BreathUp-keystore.properties")
     val keystoreProps = Properties()
-        .apply {
-            if (keystorePropsFile.exists()) keystorePropsFile.inputStream().use { load(it) }
-        }
+    if (keystorePropsFile.exists()) {
+        keystorePropsFile.inputStream().use { keystoreProps.load(it) }
+    }
 
     signingConfigs {
         if (keystorePropsFile.exists()) {
