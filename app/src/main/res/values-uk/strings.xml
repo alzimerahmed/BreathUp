@@ -480,4 +480,7 @@
     <string name="notification_toast_added">+1 сигарету записано</string>
     <string name="notification_toast_resisted">Спробу стримано!</string>
     <string name="entry_over_limit_badge">Понад ліміт</string>
+    <string name="craving_intensity_label">Інтенсивність потягу: %1$d</string>
+    <string name="craving_note_hint">Додати нотатку (необов\'язково)</string>
+    <string name="relapse_support_message">Усе гаразд: одна невдача не стирає ваш прогрес. Кожен подоланий потяг зараховується.</string>
 </resources>

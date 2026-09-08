@@ -489,4 +489,7 @@
     <string name="notification_toast_added">+1 sigaretta registrata</string>
     <string name="notification_toast_resisted">Desiderio superato!</string>
     <string name="entry_over_limit_badge">Oltre il limite</string>
+    <string name="craving_intensity_label">Intensità della voglia: %1$d</string>
+    <string name="craving_note_hint">Aggiungi una nota (facoltativo)</string>
+    <string name="relapse_support_message">Va bene: una ricaduta non cancella i tuoi progressi. Ogni voglia superata conta ancora.</string>
 </resources>

@@ -480,4 +480,7 @@
     <string name="notification_toast_added">+1 cigarette logged</string>
     <string name="notification_toast_resisted">Craving resisted!</string>
     <string name="entry_over_limit_badge">Over limit</string>
+    <string name="craving_intensity_label">Craving intensity: %1$d</string>
+    <string name="craving_note_hint">Add a note (optional)</string>
+    <string name="relapse_support_message">That\'s okay — one slip doesn\'t erase your progress. Every craving you resist still counts.</string>
 </resources>

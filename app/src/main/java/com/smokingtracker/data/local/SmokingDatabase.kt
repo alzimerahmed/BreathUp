@@ -12,7 +12,14 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
     }
 }
 
-@Database(entities = [SmokingEntryEntity::class], version = 2, exportSchema = true)
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE smoking_entries ADD COLUMN cravingIntensity INTEGER")
+        db.execSQL("ALTER TABLE smoking_entries ADD COLUMN outcomeNote TEXT")
+    }
+}
+
+@Database(entities = [SmokingEntryEntity::class], version = 3, exportSchema = true)
 abstract class SmokingDatabase : RoomDatabase() {
     abstract fun smokingDao(): SmokingDao
 }

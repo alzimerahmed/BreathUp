@@ -484,4 +484,7 @@
     <string name="notification_toast_added">+1 cigarro registrado</string>
     <string name="notification_toast_resisted">Desejo superado!</string>
     <string name="entry_over_limit_badge">Acima do limite</string>
+    <string name="craving_intensity_label">Intensidade da vontade: %1$d</string>
+    <string name="craving_note_hint">Adicionar uma nota (opcional)</string>
+    <string name="relapse_support_message">Tudo bem: um deslize não apaga o seu progresso. Cada vontade resistida continua contando.</string>
 </resources>

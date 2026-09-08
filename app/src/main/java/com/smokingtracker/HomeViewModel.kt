@@ -110,9 +110,14 @@ class HomeViewModel(
         }
     }
 
-    fun addResistedEntry(trigger: String?, timestamp: Long = System.currentTimeMillis()) {
+    fun addResistedEntry(
+        trigger: String?,
+        timestamp: Long = System.currentTimeMillis(),
+        cravingIntensity: Int? = null,
+        outcomeNote: String? = null
+    ) {
         viewModelScope.launch {
-            repository.addResistedEntry(timestamp, trigger)
+            repository.addResistedEntry(timestamp, trigger, cravingIntensity, outcomeNote)
             WidgetUpdateManager.updateAllAsync(getApplication())
         }
     }

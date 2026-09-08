@@ -38,8 +38,16 @@ class SmokingRepositoryImpl(
         smokingDao.insertEntry(SmokingEntryEntity(timestamp = timestamp, trigger = trigger, isResisted = false))
     }
 
-    override suspend fun addResistedEntry(timestamp: Long, trigger: String?) {
-        smokingDao.insertEntry(SmokingEntryEntity(timestamp = timestamp, trigger = trigger, isResisted = true))
+    override suspend fun addResistedEntry(timestamp: Long, trigger: String?, cravingIntensity: Int?, outcomeNote: String?) {
+        smokingDao.insertEntry(
+            SmokingEntryEntity(
+                timestamp = timestamp,
+                trigger = trigger,
+                isResisted = true,
+                cravingIntensity = cravingIntensity,
+                outcomeNote = outcomeNote
+            )
+        )
     }
 
     override suspend fun removeEntryById(id: Long) {

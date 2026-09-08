@@ -486,4 +486,7 @@
     <string name="notification_toast_added">+1 cigarrillo registrado</string>
     <string name="notification_toast_resisted">¡Antojo resistido!</string>
     <string name="entry_over_limit_badge">Sobre el límite</string>
+    <string name="craving_intensity_label">Intensidad del antojo: %1$d</string>
+    <string name="craving_note_hint">Añadir una nota (opcional)</string>
+    <string name="relapse_support_message">Está bien: un desliz no borra tu progreso. Cada antojo resistido sigue contando.</string>
 </resources>

@@ -492,4 +492,7 @@
     <string name="notification_toast_added">+1 cigarette enregistrée</string>
     <string name="notification_toast_resisted">Envie surmontée !</string>
     <string name="entry_over_limit_badge">Au-delà de la limite</string>
+    <string name="craving_intensity_label">Intensité de l\'envie : %1$d</string>
+    <string name="craving_note_hint">Ajouter une note (facultatif)</string>
+    <string name="relapse_support_message">Ce n\'est rien : un écart n\'efface pas vos progrès. Chaque envie résistée compte toujours.</string>
 </resources>

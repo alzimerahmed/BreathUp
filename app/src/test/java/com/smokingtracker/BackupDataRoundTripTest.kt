@@ -18,7 +18,7 @@ class BackupDataRoundTripTest {
             isRegistered = true,
             entries = listOf(
                 BackupEntry(timestamp = 1000L, trigger = "stress", isResisted = false),
-                BackupEntry(timestamp = 2000L, trigger = null, isResisted = true)
+                BackupEntry(timestamp = 2000L, trigger = null, isResisted = true, cravingIntensity = 7, outcomeNote = "held on")
             ),
             appTheme = "DARK",
             unlockedAchievements = setOf("login_1", "nosmoke_1d"),
@@ -40,6 +40,7 @@ class BackupDataRoundTripTest {
         assertEquals(true, restored.isRegistered)
         assertEquals(2, restored.entries?.size)
         assertEquals(BackupEntry(timestamp = 1000L, trigger = "stress", isResisted = false), restored.entries!![0])
+        assertEquals(BackupEntry(timestamp = 2000L, trigger = null, isResisted = true, cravingIntensity = 7, outcomeNote = "held on"), restored.entries!![1])
         assertEquals("DARK", restored.appTheme)
         assertEquals(setOf("login_1", "nosmoke_1d"), restored.unlockedAchievements)
         assertEquals(5, restored.dailyLimit)

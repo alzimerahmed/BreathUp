@@ -485,4 +485,7 @@
     <string name="notification_toast_added">+1 Zigarette erfasst</string>
     <string name="notification_toast_resisted">Verlangen widerstanden!</string>
     <string name="entry_over_limit_badge">Über dem Limit</string>
+    <string name="craving_intensity_label">Intensität des Verlangens: %1$d</string>
+    <string name="craving_note_hint">Notiz hinzufügen (optional)</string>
+    <string name="relapse_support_message">Das ist okay – ein Ausrutscher löscht deinen Fortschritt nicht. Jedes überstandene Verlangen zählt weiter.</string>
 </resources>

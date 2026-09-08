@@ -35,7 +35,7 @@ class BackupManager(
         val data = BackupData(
             isRegistered = dataStoreManager.isRegistered.first(),
             entries = currentEntries.map {
-                BackupEntry(timestamp = it.timestamp, trigger = it.trigger, isResisted = it.isResisted)
+                BackupEntry(timestamp = it.timestamp, trigger = it.trigger, isResisted = it.isResisted, cravingIntensity = it.cravingIntensity, outcomeNote = it.outcomeNote)
             },
             appTheme = dataStoreManager.appTheme.first().name,
             unlockedAchievements = dataStoreManager.unlockedAchievements.first(),
@@ -150,7 +150,9 @@ class BackupManager(
                     SmokingEntryEntity(
                         timestamp = entry.timestamp,
                         trigger = entry.trigger,
-                        isResisted = entry.isResisted
+                        isResisted = entry.isResisted,
+                        cravingIntensity = entry.cravingIntensity,
+                        outcomeNote = entry.outcomeNote
                     )
                 }
                 repository.clearAndInsertEntries(newEntities)
@@ -171,7 +173,9 @@ class BackupManager(
     data class BackupEntry(
         @SerializedName("timestamp") val timestamp: Long,
         @SerializedName("trigger") val trigger: String? = null,
-        @SerializedName("isResisted") val isResisted: Boolean = false
+        @SerializedName("isResisted") val isResisted: Boolean = false,
+        @SerializedName("cravingIntensity") val cravingIntensity: Int? = null,
+        @SerializedName("outcomeNote") val outcomeNote: String? = null
     )
 
     @Keep

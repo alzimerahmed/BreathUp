@@ -481,4 +481,7 @@
     <string name="notification_toast_added">+1 сигарета записана</string>
     <string name="notification_toast_resisted">Попытка сдержана!</string>
     <string name="entry_over_limit_badge">Сверх лимита</string>
+    <string name="craving_intensity_label">Сила тяги: %1$d</string>
+    <string name="craving_note_hint">Добавить заметку (необязательно)</string>
+    <string name="relapse_support_message">Ничего страшного: один срыв не стирает ваш прогресс. Каждая преодолённая тяга всё равно в счёт.</string>
 </resources>

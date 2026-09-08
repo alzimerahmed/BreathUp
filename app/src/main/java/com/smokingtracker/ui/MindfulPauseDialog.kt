@@ -38,7 +38,7 @@ fun MindfulPauseDialog(
     selectedTrigger: String?,
     vibrationEnabled: Boolean = false,
     onDismiss: () -> Unit,
-    onSuccess: (String?) -> Unit,
+    onSuccess: (String?, Int?, String?) -> Unit,
     onFailure: (String?) -> Unit = {}
 ) {
     ModalBottomSheet(
@@ -63,7 +63,7 @@ fun MindfulPauseContent(
     selectedTrigger: String?,
     vibrationEnabled: Boolean = false,
     onDismiss: () -> Unit,
-    onSuccess: (String?) -> Unit,
+    onSuccess: (String?, Int?, String?) -> Unit,
     onFailure: (String?) -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -86,6 +86,9 @@ fun MindfulPauseContent(
     }
 
     var tipIndex by remember { mutableIntStateOf(0) }
+
+    var cravingIntensity by remember { mutableFloatStateOf(5f) }
+    var outcomeNote by remember { mutableStateOf("") }
 
     val breathingPhaseText = when ((totalSeconds - secondsRemaining) % 12) {
         in 0..3 -> stringResource(R.string.mindful_pause_breathe_in)
@@ -270,10 +273,32 @@ fun MindfulPauseContent(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
+                Column {
+                    Text(
+                        text = stringResource(R.string.craving_intensity_label, cravingIntensity.toInt()),
+                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Slider(
+                        value = cravingIntensity,
+                        onValueChange = { cravingIntensity = it },
+                        valueRange = 1f..10f,
+                        steps = 8,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                OutlinedTextField(
+                    value = outcomeNote,
+                    onValueChange = { outcomeNote = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    shape = RoundedCornerShape(12.dp),
+                    label = { Text(stringResource(R.string.craving_note_hint)) }
+                )
                 Button(
                     onClick = {
                         com.smokingtracker.ui.theme.HapticFeedbackHelper.performSuccess(vibrationEnabled, haptic, context)
-                        onSuccess(selectedTrigger)
+                        onSuccess(selectedTrigger, cravingIntensity.toInt(), outcomeNote.trim().ifEmpty { null })
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary,

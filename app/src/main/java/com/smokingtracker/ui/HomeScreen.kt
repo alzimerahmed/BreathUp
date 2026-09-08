@@ -398,8 +398,8 @@ internal fun HomeScreenContent(
                             isProcessingAdd = false
                             isMindfulPauseActive = false
                         },
-                        onSuccess = { trigger ->
-                            viewModel?.addResistedEntry(trigger)
+                        onSuccess = { trigger, intensity, note ->
+                            viewModel?.addResistedEntry(trigger, cravingIntensity = intensity, outcomeNote = note)
                             showTriggerDialog = false
                             isProcessingAdd = false
                             isMindfulPauseActive = false
@@ -409,6 +409,12 @@ internal fun HomeScreenContent(
                             showTriggerDialog = false
                             isProcessingAdd = false
                             isMindfulPauseActive = false
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    message = context.getString(R.string.relapse_support_message),
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
                         }
                     )
                 } else {
@@ -652,14 +658,20 @@ internal fun HomeScreenContent(
             selectedTrigger = mindfulPauseTrigger,
             vibrationEnabled = vibrationEnabled,
             onDismiss = { showMindfulPauseDialog = false },
-            onSuccess = { trigger ->
-                viewModel?.addResistedEntry(trigger)
+            onSuccess = { trigger, intensity, note ->
+                viewModel?.addResistedEntry(trigger, cravingIntensity = intensity, outcomeNote = note)
                 showMindfulPauseDialog = false
             },
             onFailure = { trigger ->
                 val logTime = if (pendingLogTime > 0L) pendingLogTime else System.currentTimeMillis()
                 viewModel?.addSmokingEntryWithTrigger(logTime, trigger)
                 showMindfulPauseDialog = false
+                scope.launch {
+                    snackbarHostState.showSnackbar(
+                        message = context.getString(R.string.relapse_support_message),
+                        duration = SnackbarDuration.Short
+                    )
+                }
             }
         )
     }

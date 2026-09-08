@@ -8,6 +8,8 @@ data class SmokingEntryEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val timestamp: Long,
     val trigger: String? = null,
-    val isResisted: Boolean = false
+    val isResisted: Boolean = false,
+    val cravingIntensity: Int? = null,
+    val outcomeNote: String? = null
 )
 

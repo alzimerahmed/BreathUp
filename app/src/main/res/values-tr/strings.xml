@@ -480,4 +480,7 @@
     <string name="notification_toast_added">+1 sigara kaydedildi</string>
     <string name="notification_toast_resisted">Kriz yenildi!</string>
     <string name="entry_over_limit_badge">Limit aşıldı</string>
+    <string name="craving_intensity_label">İstek şiddeti: %1$d</string>
+    <string name="craving_note_hint">Not ekle (isteğe bağlı)</string>
+    <string name="relapse_support_message">Sorun değil – bir kayma ilerlemenizi silmez. Direndiğiniz her istek hâlâ sayılıyor.</string>
 </resources>

@@ -8,7 +8,7 @@ interface SmokingRepository {
 
     suspend fun getAllEntries(): List<SmokingEntryEntity>
     suspend fun addEntry(timestamp: Long, trigger: String?)
-    suspend fun addResistedEntry(timestamp: Long, trigger: String?)
+    suspend fun addResistedEntry(timestamp: Long, trigger: String?, cravingIntensity: Int? = null, outcomeNote: String? = null)
     suspend fun removeEntryById(id: Long)
     suspend fun updateEntryTimestampById(id: Long, newTimestamp: Long)
     suspend fun updateEntryTriggerById(id: Long, trigger: String?)
