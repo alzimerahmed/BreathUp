@@ -487,4 +487,10 @@
     <string name="craving_intensity_label">Intensidade da vontade: %1$d</string>
     <string name="craving_note_hint">Adicionar uma nota (opcional)</string>
     <string name="relapse_support_message">Tudo bem: um deslize não apaga o seu progresso. Cada vontade resistida continua contando.</string>
+    <string name="nudge_channel_name">Missões diárias</string>
+    <string name="nudge_toggle_title">Lembretes de missão diária</string>
+    <string name="nudge_toggle_desc">Uma pequena missão diária para manter você no caminho</string>
+    <string name="nudge_mission_1">Missão de hoje: Resista a uma vontade com uma pausa consciente</string>
+    <string name="nudge_mission_2">Missão de hoje: Revise suas estatísticas de gatilhos por um minuto</string>
+    <string name="nudge_mission_3">Missão de hoje: Adicione uma nota à sua última vontade</string>
 </resources>

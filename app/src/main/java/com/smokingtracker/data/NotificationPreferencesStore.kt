@@ -13,6 +13,11 @@ class NotificationPreferencesStore(private val context: Context) {
     val notificationShowProgress: Flow<Boolean> = context.dataStore.data.map { it[DataStoreManager.NOTIFICATION_SHOW_PROGRESS] ?: true }
     val notificationShowAddButton: Flow<Boolean> = context.dataStore.data.map { it[DataStoreManager.NOTIFICATION_SHOW_ADD_BUTTON] ?: true }
     val notificationShowResistButton: Flow<Boolean> = context.dataStore.data.map { it[DataStoreManager.NOTIFICATION_SHOW_RESIST_BUTTON] ?: false }
+    val dailyNudgeEnabled: Flow<Boolean> = context.dataStore.data.map { it[DataStoreManager.DAILY_NUDGE_ENABLED] ?: true }
+
+    suspend fun saveDailyNudgeEnabled(enabled: Boolean) {
+        context.dataStore.edit { it[DataStoreManager.DAILY_NUDGE_ENABLED] = enabled }
+    }
 
     suspend fun saveOngoingNotificationEnabled(enabled: Boolean) {
         context.dataStore.edit { it[DataStoreManager.NOTIFICATION_ENABLED] = enabled }

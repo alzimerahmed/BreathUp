@@ -72,6 +72,7 @@ class DataStoreManager(private val context: Context) {
         val NOTIFICATION_SHOW_PROGRESS = booleanPreferencesKey("notification_show_progress")
         val NOTIFICATION_SHOW_ADD_BUTTON = booleanPreferencesKey("notification_show_add_button")
         val NOTIFICATION_SHOW_RESIST_BUTTON = booleanPreferencesKey("notification_show_resist_button")
+        val DAILY_NUDGE_ENABLED = booleanPreferencesKey("daily_nudge_enabled")
     }
 
     val isRegistered: Flow<Boolean> = context.dataStore.data.map { preferences ->

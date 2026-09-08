@@ -488,4 +488,10 @@
     <string name="craving_intensity_label">Intensität des Verlangens: %1$d</string>
     <string name="craving_note_hint">Notiz hinzufügen (optional)</string>
     <string name="relapse_support_message">Das ist okay – ein Ausrutscher löscht deinen Fortschritt nicht. Jedes überstandene Verlangen zählt weiter.</string>
+    <string name="nudge_channel_name">Tagesmissionen</string>
+    <string name="nudge_toggle_title">Tägliche Missions-Erinnerungen</string>
+    <string name="nudge_toggle_desc">Eine kleine Tagesmission, die dich auf Kurs hält</string>
+    <string name="nudge_mission_1">Heutige Mission: Widerstehe einem Verlangen mit einer achtsamen Pause</string>
+    <string name="nudge_mission_2">Heutige Mission: Sieh dir deine Auslöser-Statistiken eine Minute lang an</string>
+    <string name="nudge_mission_3">Heutige Mission: Füge deinem letzten Verlangen eine Notiz hinzu</string>
 </resources>

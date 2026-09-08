@@ -18,6 +18,7 @@ class SmokingTrackerApp : Application() {
         }
         createNotificationChannel()
         com.smokingtracker.notification.OngoingNotificationManager.update(this)
+        com.smokingtracker.notification.DailyNudgeWorker.schedule(this)
     }
 
     private fun createNotificationChannel() {
@@ -50,7 +51,17 @@ class SmokingTrackerApp : Application() {
                 setShowBadge(false)
             }
 
-            notificationManager.createNotificationChannels(listOf(achievementChannel, ongoingLowChannel, ongoingDefaultChannel))
+            val dailyNudgeChannel = NotificationChannel(
+                CHANNEL_DAILY_NUDGE,
+                getString(R.string.nudge_channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                setShowBadge(false)
+            }
+
+            notificationManager.createNotificationChannels(
+                listOf(achievementChannel, ongoingLowChannel, ongoingDefaultChannel, dailyNudgeChannel)
+            )
         }
     }
 
@@ -58,5 +69,6 @@ class SmokingTrackerApp : Application() {
         const val CHANNEL_ID = "achievements_channel"
         const val CHANNEL_ONGOING_LOW = "ongoing_status_channel_low"
         const val CHANNEL_ONGOING_DEFAULT = "ongoing_status_channel_default"
+        const val CHANNEL_DAILY_NUDGE = "daily_nudge_channel"
     }
 }

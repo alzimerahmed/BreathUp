@@ -492,4 +492,10 @@
     <string name="craving_intensity_label">Intensità della voglia: %1$d</string>
     <string name="craving_note_hint">Aggiungi una nota (facoltativo)</string>
     <string name="relapse_support_message">Va bene: una ricaduta non cancella i tuoi progressi. Ogni voglia superata conta ancora.</string>
+    <string name="nudge_channel_name">Missioni giornaliere</string>
+    <string name="nudge_toggle_title">Promemoria missione giornaliera</string>
+    <string name="nudge_toggle_desc">Una piccola missione quotidiana per restare in carreggiata</string>
+    <string name="nudge_mission_1">Missione di oggi: Resisti a una voglia con una pausa consapevole</string>
+    <string name="nudge_mission_2">Missione di oggi: Rivedi le statistiche dei trigger per un minuto</string>
+    <string name="nudge_mission_3">Missione di oggi: Aggiungi una nota alla tua ultima voglia</string>
 </resources>

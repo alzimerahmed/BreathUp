@@ -55,6 +55,8 @@ fun NotificationSettingsBottomSheet(
     onShowAddButtonChange: (Boolean) -> Unit,
     showResistButton: Boolean,
     onShowResistButtonChange: (Boolean) -> Unit,
+    dailyNudgeEnabled: Boolean,
+    onDailyNudgeChange: (Boolean) -> Unit,
     dailyLimit: Int,
     onDismissRequest: () -> Unit,
     vibrationEnabled: Boolean = false
@@ -180,6 +182,69 @@ fun NotificationSettingsBottomSheet(
                         checked = enabled,
                         onCheckedChange = { handleToggle(it) },
                         thumbContent = { SwitchThumb(enabled) },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                            checkedTrackColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+                }
+            }
+
+            // Daily Nudge Card
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = containerShape(RoundedCornerShape(20.dp)),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+                border = containerBorder()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onDailyNudgeChange(!dailyNudgeEnabled) }
+                        .padding(horizontal = 18.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(14.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = if (dailyNudgeEnabled) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
+                            contentColor = if (dailyNudgeEnabled) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(42.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Icons.Filled.NotificationsActive,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(22.dp)
+                                )
+                            }
+                        }
+                        Column {
+                            Text(
+                                text = stringResource(R.string.nudge_toggle_title),
+                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = stringResource(R.string.nudge_toggle_desc),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                            )
+                        }
+                    }
+
+                    Switch(
+                        checked = dailyNudgeEnabled,
+                        onCheckedChange = {
+                            HapticFeedbackHelper.performClick(vibrationEnabled, haptic, context)
+                            onDailyNudgeChange(it)
+                        },
+                        thumbContent = { SwitchThumb(dailyNudgeEnabled) },
                         colors = SwitchDefaults.colors(
                             checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
                             checkedTrackColor = MaterialTheme.colorScheme.primary

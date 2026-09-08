@@ -483,4 +483,10 @@
     <string name="craving_intensity_label">İstek şiddeti: %1$d</string>
     <string name="craving_note_hint">Not ekle (isteğe bağlı)</string>
     <string name="relapse_support_message">Sorun değil – bir kayma ilerlemenizi silmez. Direndiğiniz her istek hâlâ sayılıyor.</string>
+    <string name="nudge_channel_name">Günlük görevler</string>
+    <string name="nudge_toggle_title">Günlük görev hatırlatıcıları</string>
+    <string name="nudge_toggle_desc">Yolda kalmanıza yardımcı olacak küçük bir günlük görev</string>
+    <string name="nudge_mission_1">Bugünün görevi: Farkındalık molasıyla bir isteğe direnin</string>
+    <string name="nudge_mission_2">Bugünün görevi: Tetikleyici istatistiklerinizi bir dakika inceleyin</string>
+    <string name="nudge_mission_3">Bugünün görevi: Son isteğinize bir not ekleyin</string>
 </resources>

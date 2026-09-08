@@ -484,4 +484,10 @@
     <string name="craving_intensity_label">Сила тяги: %1$d</string>
     <string name="craving_note_hint">Добавить заметку (необязательно)</string>
     <string name="relapse_support_message">Ничего страшного: один срыв не стирает ваш прогресс. Каждая преодолённая тяга всё равно в счёт.</string>
+    <string name="nudge_channel_name">Ежедневные миссии</string>
+    <string name="nudge_toggle_title">Ежедневные напоминания-миссии</string>
+    <string name="nudge_toggle_desc">Небольшая ежедневная миссия, чтобы не сбиться с пути</string>
+    <string name="nudge_mission_1">Миссия на сегодня: Устойте перед одной тягой с помощью осознанной паузы</string>
+    <string name="nudge_mission_2">Миссия дня: Просмотрите статистику триггеров за одну минуту</string>
+    <string name="nudge_mission_3">Миссия дня: Добавьте заметку к своей последней тяге</string>
 </resources>

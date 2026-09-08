@@ -1,4 +1,4 @@
-package com.smokingtracker.ui
+﻿package com.smokingtracker.ui
 
 import android.app.LocaleManager
 import android.os.Build
@@ -112,6 +112,7 @@ fun PersonalScreen(
     val notificationShowProgress by viewModel.notificationShowProgress.collectAsStateWithLifecycle()
     val notificationShowAddButton by viewModel.notificationShowAddButton.collectAsStateWithLifecycle()
     val notificationShowResistButton by viewModel.notificationShowResistButton.collectAsStateWithLifecycle()
+        val dailyNudgeEnabled by viewModel.dailyNudgeEnabled.collectAsStateWithLifecycle()
     val vibrationEnabled by viewModel.vibrationEnabled.collectAsStateWithLifecycle()
 
     PersonalScreenContent(
@@ -132,7 +133,8 @@ fun PersonalScreen(
         notificationShowTimer = notificationShowTimer,
         notificationShowProgress = notificationShowProgress,
         notificationShowAddButton = notificationShowAddButton,
-        notificationShowResistButton = notificationShowResistButton,
+        dailyNudgeEnabled = dailyNudgeEnabled,
+            notificationShowResistButton = notificationShowResistButton,
         vibrationEnabled = vibrationEnabled,
         onAddCustomTrigger = viewModel::addCustomTrigger,
         onRemoveCustomTrigger = viewModel::removeCustomTrigger,
@@ -144,6 +146,7 @@ fun PersonalScreen(
         onNotificationShowProgressChange = viewModel::updateNotificationShowProgress,
         onNotificationShowAddButtonChange = viewModel::updateNotificationShowAddButton,
         onNotificationShowResistButtonChange = viewModel::updateNotificationShowResistButton,
+        onDailyNudgeChange = viewModel::updateDailyNudgeEnabled,
         onThemeChange = viewModel::updateThemePreference,
         onSetDailyLimit = viewModel::setDailyLimit,
         onFontPresetChange = viewModel::updateFontPreset,
@@ -185,7 +188,8 @@ fun PersonalScreenContent(
     notificationShowTimer: Boolean = true,
     notificationShowProgress: Boolean = true,
     notificationShowAddButton: Boolean = true,
-    notificationShowResistButton: Boolean = false,
+    dailyNudgeEnabled: Boolean = true,
+        notificationShowResistButton: Boolean = false,
     vibrationEnabled: Boolean = false,
     onAddCustomTrigger: (String, (String?) -> Unit) -> Unit = { _, _ -> },
     onRemoveCustomTrigger: (String) -> Unit = {},
@@ -196,7 +200,8 @@ fun PersonalScreenContent(
     onNotificationShowTimerChange: (Boolean) -> Unit = {},
     onNotificationShowProgressChange: (Boolean) -> Unit = {},
     onNotificationShowAddButtonChange: (Boolean) -> Unit = {},
-    onNotificationShowResistButtonChange: (Boolean) -> Unit = {},
+    onDailyNudgeChange: (Boolean) -> Unit = {},
+        onNotificationShowResistButtonChange: (Boolean) -> Unit = {},
     onThemeChange: (ThemePreference) -> Unit,
     onSetDailyLimit: (Int) -> Unit,
     onFontPresetChange: (FontPreset) -> Unit,
@@ -249,6 +254,7 @@ fun PersonalScreenContent(
             notificationShowTimer = notificationShowTimer,
             notificationShowProgress = notificationShowProgress,
             notificationShowAddButton = notificationShowAddButton,
+            dailyNudgeEnabled = dailyNudgeEnabled,
             notificationShowResistButton = notificationShowResistButton,
             vibrationEnabled = vibrationEnabled,
             onAddCustomTrigger = onAddCustomTrigger,
@@ -260,6 +266,7 @@ fun PersonalScreenContent(
             onNotificationShowTimerChange = onNotificationShowTimerChange,
             onNotificationShowProgressChange = onNotificationShowProgressChange,
             onNotificationShowAddButtonChange = onNotificationShowAddButtonChange,
+            onDailyNudgeChange = onDailyNudgeChange,
             onNotificationShowResistButtonChange = onNotificationShowResistButtonChange,
             onThemeChange = onThemeChange,
             onSetDailyLimit = onSetDailyLimit,
@@ -305,7 +312,8 @@ fun SettingsTab(
     notificationShowTimer: Boolean = true,
     notificationShowProgress: Boolean = true,
     notificationShowAddButton: Boolean = true,
-    notificationShowResistButton: Boolean = false,
+    dailyNudgeEnabled: Boolean = true,
+        notificationShowResistButton: Boolean = false,
     vibrationEnabled: Boolean = false,
     onAddCustomTrigger: (String, (String?) -> Unit) -> Unit = { _, _ -> },
     onRemoveCustomTrigger: (String) -> Unit = {},
@@ -316,7 +324,8 @@ fun SettingsTab(
     onNotificationShowTimerChange: (Boolean) -> Unit = {},
     onNotificationShowProgressChange: (Boolean) -> Unit = {},
     onNotificationShowAddButtonChange: (Boolean) -> Unit = {},
-    onNotificationShowResistButtonChange: (Boolean) -> Unit = {},
+    onDailyNudgeChange: (Boolean) -> Unit = {},
+        onNotificationShowResistButtonChange: (Boolean) -> Unit = {},
     onThemeChange: (ThemePreference) -> Unit,
     onSetDailyLimit: (Int) -> Unit,
     onFontPresetChange: (FontPreset) -> Unit,
@@ -438,6 +447,8 @@ fun SettingsTab(
             onShowAddButtonChange = onNotificationShowAddButtonChange,
             showResistButton = notificationShowResistButton,
             onShowResistButtonChange = onNotificationShowResistButtonChange,
+            dailyNudgeEnabled = dailyNudgeEnabled,
+            onDailyNudgeChange = onDailyNudgeChange,
             dailyLimit = dailyLimit,
             onDismissRequest = { showNotificationSettingsSheet = false },
             vibrationEnabled = vibrationEnabled
@@ -447,14 +458,14 @@ fun SettingsTab(
     if (showLanguageDialog) {
         val languages = listOf(
             "en" to "English",
-            "ru" to "Русский",
-            "es" to "Español",
+            "ru" to "Ð ÑƒÑÑÐºÐ¸Ð¹",
+            "es" to "EspaÃ±ol",
             "de" to "Deutsch",
-            "fr" to "Français",
-            "tr" to "Türkçe",
+            "fr" to "FranÃ§ais",
+            "tr" to "TÃ¼rkÃ§e",
             "it" to "Italiano",
-            "pt" to "Português",
-            "uk" to "Українська"
+            "pt" to "PortuguÃªs",
+            "uk" to "Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ°"
         )
         ModalBottomSheet(
             onDismissRequest = { showLanguageDialog = false },

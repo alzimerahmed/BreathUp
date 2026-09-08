@@ -489,4 +489,10 @@
     <string name="craving_intensity_label">Intensidad del antojo: %1$d</string>
     <string name="craving_note_hint">Añadir una nota (opcional)</string>
     <string name="relapse_support_message">Está bien: un desliz no borra tu progreso. Cada antojo resistido sigue contando.</string>
+    <string name="nudge_channel_name">Misiones diarias</string>
+    <string name="nudge_toggle_title">Recordatorios de misión diaria</string>
+    <string name="nudge_toggle_desc">Una pequeña misión diaria para mantenerte en camino</string>
+    <string name="nudge_mission_1">Misión de hoy: Resiste un antojo con una pausa consciente</string>
+    <string name="nudge_mission_2">Misión de hoy: Revisa tus estadísticas de disparadores durante un minuto</string>
+    <string name="nudge_mission_3">Misión de hoy: Añade una nota a tu último antojo</string>
 </resources>

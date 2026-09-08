@@ -483,4 +483,10 @@
     <string name="craving_intensity_label">Craving intensity: %1$d</string>
     <string name="craving_note_hint">Add a note (optional)</string>
     <string name="relapse_support_message">That\'s okay — one slip doesn\'t erase your progress. Every craving you resist still counts.</string>
+    <string name="nudge_channel_name">Daily missions</string>
+    <string name="nudge_toggle_title">Daily mission reminders</string>
+    <string name="nudge_toggle_desc">A small daily mission to keep you on track</string>
+    <string name="nudge_mission_1">Today\'s mission: resist one craving with a mindful pause</string>
+    <string name="nudge_mission_2">Today\'s mission: review your trigger stats for one minute</string>
+    <string name="nudge_mission_3">Today\'s mission: add a note to your last craving</string>
 </resources>

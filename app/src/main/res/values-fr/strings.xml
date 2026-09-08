@@ -495,4 +495,10 @@
     <string name="craving_intensity_label">Intensité de l\'envie : %1$d</string>
     <string name="craving_note_hint">Ajouter une note (facultatif)</string>
     <string name="relapse_support_message">Ce n\'est rien : un écart n\'efface pas vos progrès. Chaque envie résistée compte toujours.</string>
+    <string name="nudge_channel_name">Missions quotidiennes</string>
+    <string name="nudge_toggle_title">Rappels de mission quotidienne</string>
+    <string name="nudge_toggle_desc">Une petite mission quotidienne pour rester sur la bonne voie</string>
+    <string name="nudge_mission_1">Mission du jour : Résistez à une envie avec une pause consciente</string>
+    <string name="nudge_mission_2">Mission du jour : Consultez vos statistiques de déclencheurs pendant une minute</string>
+    <string name="nudge_mission_3">Mission du jour : Ajoutez une note à votre dernière envie</string>
 </resources>

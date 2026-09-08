@@ -483,4 +483,10 @@
     <string name="craving_intensity_label">Інтенсивність потягу: %1$d</string>
     <string name="craving_note_hint">Додати нотатку (необов\'язково)</string>
     <string name="relapse_support_message">Усе гаразд: одна невдача не стирає ваш прогрес. Кожен подоланий потяг зараховується.</string>
+    <string name="nudge_channel_name">Щоденні місії</string>
+    <string name="nudge_toggle_title">Нагадування про щоденну місію</string>
+    <string name="nudge_toggle_desc">Невелика щоденна місія, щоб не зійти зі шляху</string>
+    <string name="nudge_mission_1">Місія дня: Подолайте один потяг за допомогою усвідомленої паузи</string>
+    <string name="nudge_mission_2">Сьогоднішня місія: Перегляньте статистику тригерів протягом хвилини</string>
+    <string name="nudge_mission_3">Місія дня: Додайте нотатку до свого останнього потягу</string>
 </resources>

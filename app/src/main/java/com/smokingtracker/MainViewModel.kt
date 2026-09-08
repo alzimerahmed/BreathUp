@@ -274,6 +274,12 @@ class MainViewModel(
         initialValue = false
     )
 
+    val dailyNudgeEnabled: StateFlow<Boolean> = notificationStore.dailyNudgeEnabled.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = true
+    )
+
     val activeTriggers: StateFlow<List<com.smokingtracker.data.TriggerItem>> = kotlinx.coroutines.flow.combine(
         dataStoreManager.customTriggers,
         dataStoreManager.disabledDefaultTriggers
@@ -545,6 +551,12 @@ class MainViewModel(
         viewModelScope.launch {
             notificationStore.saveNotificationShowResistButton(show)
             com.smokingtracker.notification.OngoingNotificationManager.update(getApplication())
+        }
+    }
+
+    fun updateDailyNudgeEnabled(enabled: Boolean) {
+        viewModelScope.launch {
+            notificationStore.saveDailyNudgeEnabled(enabled)
         }
     }
     
