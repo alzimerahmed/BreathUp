@@ -153,7 +153,7 @@ fun PersonalScreen(
         onResetUpdateCheckState = viewModel::resetUpdateCheckState,
         onBackupData = { uri, onSuccess, onError -> viewModel.backupData(uri, onSuccess, onError) },
         onRestoreData = { uri, onSuccess, onError -> viewModel.restoreData(uri, onSuccess, onError) },
-        onRecordLanguageChange = { tag -> viewModel.recordLanguageChange(tag) },
+        onRecordLanguageChange = { viewModel.recordLanguageChange() },
         onNavigateToAbout = onNavigateToAbout,
         onNavigateToAchievements = onNavigateToAchievements,
         onNavigateToStatistics = onNavigateToStatistics,
@@ -1218,14 +1218,9 @@ fun changeLanguage(context: android.content.Context, languageTag: String) {
         context.getSystemService(LocaleManager::class.java)
             .applicationLocales = LocaleList.forLanguageTags(languageTag)
     } else {
-        val locale = java.util.Locale.forLanguageTag(languageTag)
-        java.util.Locale.setDefault(locale)
-        val config = android.content.res.Configuration(context.resources.configuration)
-        config.setLocale(locale)
-        @Suppress("DEPRECATION")
-        context.resources.updateConfiguration(config, context.resources.displayMetrics)
-        val activity = context as? android.app.Activity
-        activity?.recreate()
+        androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
+            androidx.core.os.LocaleListCompat.forLanguageTags(languageTag)
+        )
     }
 }
 

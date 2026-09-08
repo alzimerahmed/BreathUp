@@ -430,11 +430,8 @@ class MainViewModel(
         }
     }
 
-    fun recordLanguageChange(languageTag: String) {
+    fun recordLanguageChange() {
         viewModelScope.launch {
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) {
-                dataStoreManager.saveAppLanguageTag(languageTag)
-            }
             dataStoreManager.recordThemeOrLangChange()
             achievementsCoordinator.checkAndUpdate()
         }

@@ -11,6 +11,7 @@ import com.smokingtracker.StatisticsManager
 import com.smokingtracker.data.DataStoreManager
 import com.smokingtracker.data.local.SmokingDatabase
 import com.smokingtracker.data.repository.SmokingRepository
+import com.smokingtracker.data.repository.SmokingRepositoryImpl
 import com.smokingtracker.data.manager.GitHubUpdateManager
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
@@ -36,7 +37,7 @@ val appModule = module {
         ).addMigrations(MIGRATION_1_2).build()
     }
     single { get<SmokingDatabase>().smokingDao() }
-    single { SmokingRepository(get(), get(), get()) }
+    single<SmokingRepository> { SmokingRepositoryImpl(get(), get(), get()) }
     single { AchievementsCoordinator(get(), get(), get(), androidApplication(), get()) }
     single { AppIconManager(androidApplication()) }
     single { BackupManager(androidApplication(), get(), get(), get(), get()) }

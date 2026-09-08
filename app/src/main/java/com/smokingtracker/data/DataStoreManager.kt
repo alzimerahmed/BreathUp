@@ -655,13 +655,14 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
+    // Legacy storage kept only for the one-time migration to AppCompatDelegate locales.
     val appLanguageTag: Flow<String?> = context.dataStore.data.map { preferences ->
         preferences[APP_LANGUAGE_TAG]
     }
 
-    suspend fun saveAppLanguageTag(tag: String) {
+    suspend fun clearAppLanguageTag() {
         context.dataStore.edit { preferences ->
-            preferences[APP_LANGUAGE_TAG] = tag
+            preferences.remove(APP_LANGUAGE_TAG)
         }
     }
 
