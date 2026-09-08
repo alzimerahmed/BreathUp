@@ -2,8 +2,6 @@
 
 <div align="center">
 
-<img src="fastlane/metadata/android/en-US/images/featureGraphic.png" alt="BreathUp feature graphic" width="100%">
-
 [![Platform](https://img.shields.io/badge/Android-8.0%2B_(API_26%2B)-3DDC84?logo=android&logoColor=white&labelColor=1a1a1a&style=flat-square)](https://developer.android.com)
 [![Language](https://img.shields.io/badge/Kotlin-2.x-7F52FF?logo=kotlin&logoColor=white&labelColor=1a1a1a&style=flat-square)](https://kotlinlang.org)
 [![UI](https://img.shields.io/badge/Jetpack%20Compose-Material%203-6750A4?logo=jetpackcompose&logoColor=white&labelColor=1a1a1a&style=flat-square)](https://developer.android.com/jetpack/compose)
